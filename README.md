@@ -28,6 +28,7 @@ Golden star visual elements.
 Custom golden healing-star browser favicon.
 Responsive browser-based interface.
 Synchronized minimum and maximum pitch controls to prevent invalid frequency ranges.
+
 2. User Instructions
 Accessing the Application
 
@@ -116,6 +117,7 @@ Keep the README updated when functionality changes.
 Test audio features in multiple browsers.
 Preserve responsive layout and accessibility.
 Use descriptive Git commit messages.
+
 4. UI and Design Guidelines
 
 The visual identity of Sound Lab with Healing includes:
@@ -215,7 +217,8 @@ Prepared project documentation.
 Added developer instructions.
 Defined manual QA scenarios.
 Established a progress tracking structure.
-8. Future Improvements
+
+7. Future Improvements
 
 Potential future development ideas:
 
@@ -230,7 +233,7 @@ Accessibility improvements.
 
 These are proposed enhancements and are not necessarily implemented.
 
-9. Known Issues and Planned Fixes
+8. Known Issues and Planned Fixes
 
 The following items have been identified for future maintenance and improvement.
 
@@ -250,13 +253,13 @@ These issues are documented for future maintenance. They should be addressed and
 
 Update the status of each item as development progresses.
 
-10. Version History
+9. Version History
 Version	Description
 1.0.0	Initial public GitHub Pages release
 
 Update this section whenever a new release is published.
 
-11. License
+10. License
 
 This project is distributed under the BSD 2-Clause License.
 
@@ -264,7 +267,7 @@ See the LICENSE file for the complete license text.
 
 Copyright © 2026 wojtek0126.
 
-12. Project Links
+11. Project Links
 Live application: https://wojtek0126.github.io/Sound-Lab-with-healing/
 GitHub repository: https://github.com/wojtek0126/Sound-Lab-with-healing
 License: BSD 2-Clause
