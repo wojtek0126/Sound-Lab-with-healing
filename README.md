@@ -1,2 +1,242 @@
-# Sound-Lab-with-healing
-An interactive underwater sound laboratory with random sound generation, audio recording, WAV playback and day/night themes. Healing frequencies included
+⭐ Sound Lab with Healing
+
+A browser-based sound laboratory designed for exploring sound, creating relaxing audio experiences, and experimenting with sound generation and recording.
+
+Live application:
+https://wojtek0126.github.io/Sound-Lab-with-healing/
+
+GitHub repository:
+https://github.com/wojtek0126/Sound-Lab-with-healing
+
+License: BSD 2-Clause
+
+1. Project Overview
+
+Sound Lab with Healing is a web-based application focused on sound exploration and an enjoyable, calming user experience.
+
+The project combines sound-related functionality with a visually appealing interface featuring golden star details and day/night themes.
+
+The application is designed to run directly in a modern web browser without requiring a traditional software installation.
+
+Main Features
+Sound generation and experimentation.
+Audio recording.
+WAV audio playback.
+Day/night visual themes.
+Compact, left-aligned day/night switch.
+Golden star visual elements.
+Custom golden healing-star browser favicon.
+Responsive browser-based interface.
+2. User Instructions
+Accessing the Application
+
+Open the application using:
+
+https://wojtek0126.github.io/Sound-Lab-with-healing/
+
+A modern browser is recommended.
+
+Using the Application
+Open the application in your browser.
+Explore the available sound-generation features.
+Experiment with the available sound settings.
+Use audio playback to listen to generated sounds.
+Use recording functionality where available.
+Switch between day and night themes using the theme switch.
+Enjoy the golden-star visual design.
+Browser Compatibility
+
+Recommended browsers:
+
+Google Chrome
+Mozilla Firefox
+Microsoft Edge
+Safari
+
+Some audio features may require user interaction before playback because of browser audio security policies.
+
+3. Developer Notes
+Technology
+
+The application is distributed as a browser-based HTML project.
+
+The current repository uses GitHub Pages for hosting.
+
+Repository Structure
+
+Expected project structure:
+
+text
+Sound-Lab-with-healing/
+│
+├── index.html
+├── favicon.svg
+├── README.md
+├── LICENSE
+└── .gitignore
+
+
+Additional assets or source files may be added as the application develops.
+
+Main Files
+File	Purpose
+index.html	Main application
+favicon.svg	Golden healing-star browser icon
+README.md	Project documentation
+LICENSE	BSD 2-Clause license
+.gitignore	Files excluded from Git
+GitHub Pages Deployment
+
+The project is hosted using GitHub Pages.
+
+Deployment configuration:
+
+Open repository Settings.
+Select Pages.
+Choose Deploy from a branch.
+Select main.
+Select / (root).
+Save the configuration.
+
+GitHub Pages automatically publishes changes committed to the selected branch.
+
+Updating the Application
+Edit the local application files.
+Test changes in a browser.
+Upload modified files to GitHub.
+Commit changes with a descriptive message.
+Wait for GitHub Pages deployment.
+Verify the published application.
+Developer Recommendations
+Keep the main entry file named index.html.
+Preserve the favicon reference when modifying the HTML.
+Avoid committing private keys, credentials or personal information.
+Keep the README updated when functionality changes.
+Test audio features in multiple browsers.
+Preserve responsive layout and accessibility.
+Use descriptive Git commit messages.
+4. UI and Design Guidelines
+
+The visual identity of Sound Lab with Healing includes:
+
+Golden healing-star details.
+A clean and uncluttered interface.
+Day and night visual modes.
+Compact, left-aligned theme switching.
+A custom golden-star favicon.
+Consistent styling across desktop and mobile layouts.
+Favicon
+
+The project uses a custom healing-star icon instead of the browser's default globe icon.
+
+Expected HTML reference:
+
+HTML
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+
+The favicon file should remain in the repository root unless its path is updated.
+
+5. QA Testing
+
+The following test scenarios provide a simple manual testing checklist.
+
+ID	Test scenario	Expected result
+QA-01	Open application	Main interface loads
+QA-02	Load application on refresh	Application loads without errors
+QA-03	Switch to night mode	Night theme appears
+QA-04	Switch to day mode	Day theme appears
+QA-05	Inspect theme switch	Switch remains compact and left-aligned
+QA-06	Inspect golden stars	Star details display correctly
+QA-07	Generate sound	Sound generation works
+QA-08	Play generated sound	Audio plays correctly
+QA-09	Record audio	Recording functionality works
+QA-10	Play WAV audio	WAV playback works
+QA-11	Inspect browser tab	Golden healing-star favicon appears
+QA-12	Test on mobile	Layout remains usable
+QA-13	Refresh live website	Application remains accessible
+QA-14	Inspect console	No unexpected critical errors
+QA Execution Log
+
+Use this template when testing a new release:
+
+Test ID	Result	Notes
+QA-01	Not tested	
+QA-02	Not tested	
+QA-03	Not tested	
+QA-04	Not tested	
+QA-05	Not tested	
+QA-06	Not tested	
+QA-07	Not tested	
+QA-08	Not tested	
+QA-09	Not tested	
+QA-10	Not tested	
+QA-11	Not tested	
+QA-12	Not tested	
+QA-13	Not tested	
+QA-14	Not tested	
+
+Note: These are proposed test scenarios, not a claim that every test has already passed.
+
+6. Progress Log
+Initial Development
+Created the Sound Lab with Healing application.
+Established the browser-based application structure.
+Added sound-related functionality.
+Developed the initial visual interface.
+UI Improvements
+Introduced additional golden-star visual details.
+Improved the day/night theme switch.
+Reduced the theme switch width.
+Moved the theme switch towards the left side of the interface.
+Branding
+Selected the golden healing star as the application's visual symbol.
+Prepared a custom SVG favicon.
+Replaced the default browser globe icon with project branding.
+GitHub Publication
+Created the GitHub repository.
+Selected BSD 2-Clause licensing.
+Prepared index.html and favicon.svg.
+Uploaded the application to GitHub.
+Configured GitHub Pages.
+Successfully published the application online.
+Documentation
+Prepared project documentation.
+Added developer instructions.
+Defined manual QA scenarios.
+Established a progress tracking structure.
+7. Future Improvements
+
+Potential future development ideas:
+
+Additional sound-generation presets.
+More audio customization options.
+Improved recording management.
+Download and export enhancements.
+Additional visual themes.
+Improved mobile experience.
+Expanded automated QA testing.
+Accessibility improvements.
+
+These are proposed enhancements and are not necessarily implemented.
+
+8. Version History
+Version	Description
+1.0.0	Initial public GitHub Pages release
+
+Update this section whenever a new release is published.
+
+9. License
+
+This project is distributed under the BSD 2-Clause License.
+
+See the LICENSE file for the complete license text.
+
+Copyright © 2026 wojtek0126.
+
+10. Project Links
+Live application: https://wojtek0126.github.io/Sound-Lab-with-healing/
+GitHub repository: https://github.com/wojtek0126/Sound-Lab-with-healing
+License: BSD 2-Clause
+
+⭐ Sound Lab with Healing — Explore sound, create, experiment, and enjoy.
