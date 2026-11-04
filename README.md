@@ -230,13 +230,33 @@ Accessibility improvements.
 
 These are proposed enhancements and are not necessarily implemented.
 
-8. Version History
+9. Known Issues and Planned Fixes
+
+The following items have been identified for future maintenance and improvement.
+
+ID	Area	Issue / Planned Improvement	Status
+BUG-01	Recording	Prevent users from saving the original recording when no recording has been created.	Pending
+BUG-02	Recording	Improve the error message displayed when attempting to save a WAV file without an available recording. Use consistent wording across recording actions.	Pending
+
+Planned Behaviour
+
+Save Original Recording should only be available when a valid recording exists.
+Save as WAV should provide a clear and consistent message when no recording is available.
+Recording-related actions should correctly reflect the current recording state.
+
+Development Notes
+
+These issues are documented for future maintenance. They should be addressed and manually tested before being marked as completed.
+
+Update the status of each item as development progresses.
+
+10. Version History
 Version	Description
 1.0.0	Initial public GitHub Pages release
 
 Update this section whenever a new release is published.
 
-9. License
+11. License
 
 This project is distributed under the BSD 2-Clause License.
 
@@ -244,7 +264,7 @@ See the LICENSE file for the complete license text.
 
 Copyright © 2026 wojtek0126.
 
-10. Project Links
+12. Project Links
 Live application: https://wojtek0126.github.io/Sound-Lab-with-healing/
 GitHub repository: https://github.com/wojtek0126/Sound-Lab-with-healing
 License: BSD 2-Clause
