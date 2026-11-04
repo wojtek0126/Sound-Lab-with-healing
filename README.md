@@ -27,6 +27,7 @@ Compact, left-aligned day/night switch.
 Golden star visual elements.
 Custom golden healing-star browser favicon.
 Responsive browser-based interface.
+Synchronized minimum and maximum pitch controls to prevent invalid frequency ranges.
 2. User Instructions
 Accessing the Application
 
@@ -156,6 +157,9 @@ QA-11	Inspect browser tab	Golden healing-star favicon appears
 QA-12	Test on mobile	Layout remains usable
 QA-13	Refresh live website	Application remains accessible
 QA-14	Inspect console	No unexpected critical errors
+QA-15    Test minimum pitch slider    Maximum pitch automatically adjusts when minimum pitch exceeds it
+QA-16    Test maximum pitch slider    Minimum pitch automatically adjusts when maximum pitch goes below it
+QA-17    Inspect pitch value labels    Both displayed values update correctly
 QA Execution Log
 
 Use this template when testing a new release:
@@ -185,6 +189,12 @@ Established the browser-based application structure.
 Added sound-related functionality.
 Developed the initial visual interface.
 UI Improvements
+Pitch Control Improvements
+Implemented synchronized minimum and maximum pitch sliders.
+Prevented minimum pitch from exceeding maximum pitch.
+Prevented maximum pitch from falling below minimum pitch.
+Added automatic adjustment of the opposite slider.
+Ensured pitch value labels update immediately.
 Introduced additional golden-star visual details.
 Improved the day/night theme switch.
 Reduced the theme switch width.
@@ -205,7 +215,7 @@ Prepared project documentation.
 Added developer instructions.
 Defined manual QA scenarios.
 Established a progress tracking structure.
-7. Future Improvements
+8. Future Improvements
 
 Potential future development ideas:
 
