@@ -1882,7 +1882,7 @@ async function replayRecording() {
         $("stopReplay").disabled = false;
     } catch (error) {
         $("recordStatus").textContent =
-            "Nothing to replay. please enerate a sound or sequence first";
+            "Nothing to replay. please generate a sound or sequence first";
     }
 }
 
@@ -2226,8 +2226,39 @@ connectSlider("soundVolume", "volumeValue", "%");
 connectSlider("gap", "gapValue", " seconds");
 connectSlider("soundCount", "countValue", "");
 connectSlider("randomMax", "randomMaxValue", "");
-connectSlider("minPitch", "minPitchValue", " Hz");
-connectSlider("maxPitch", "maxPitchValue", " Hz");
+// Keep minimum and maximum pitch synchronized
+function synchronizePitchSliders(changedSlider) {
+
+    const minSlider = $("minPitch");
+    const maxSlider = $("maxPitch");
+
+    let min = Number(minSlider.value);
+    let max = Number(maxSlider.value);
+
+    if (changedSlider === "minPitch" && min > max) {
+        maxSlider.value = min;
+    }
+
+    if (changedSlider === "maxPitch" && max < min) {
+        minSlider.value = max;
+    }
+
+    $("minPitchValue").textContent = minSlider.value + " Hz";
+    $("maxPitchValue").textContent = maxSlider.value + " Hz";
+}
+
+$("minPitch").addEventListener("input", () => {
+    synchronizePitchSliders("minPitch");
+    stopGoldenStars();
+});
+
+$("maxPitch").addEventListener("input", () => {
+    synchronizePitchSliders("maxPitch");
+    stopGoldenStars();
+});
+
+// Initialize displayed values
+synchronizePitchSliders();
 // Stop golden stars when pitch is manually changed
 $("minPitch").addEventListener("input", stopGoldenStars);
 $("maxPitch").addEventListener("input", stopGoldenStars);
