@@ -311,3 +311,211 @@ GitHub repository: https://github.com/wojtek0126/Sound-Lab-with-healing
 License: BSD 2-Clause
 
 ⭐ Sound Lab with Healing — Explore sound, create, experiment, and enjoy.
+
+8. Development Roadmap — Version 1.2.0
+The next development milestone focuses on improving application architecture, introducing multilingual support, and preparing Sound Lab with Healing for future user account functionality.
+
+All features listed below are planned and should not be considered implemented until development and testing are completed.
+
+8.1 Project Architecture Refactoring
+Objective: Improve maintainability, readability and scalability by separating the existing application into dedicated files and modules.
+
+Planned changes:
+
+Separate the main HTML structure from CSS and JavaScript.
+Move styling into dedicated CSS files.
+Divide JavaScript functionality into logical modules.
+Separate audio generation and recording functionality.
+Introduce dedicated accordion and UI interaction modules.
+Introduce dedicated form validation and authentication modules.
+Centralise localisation functionality.
+Preserve all existing application features during refactoring.
+Proposed project structure:
+
+
+text
+Sound-Lab-with-healing/
+│
+├── index.html
+├── login.html
+├── signup.html
+│
+├── css/
+│   ├── style.css
+│   ├── auth.css
+│   └── responsive.css
+│
+├── js/
+│   ├── app.js
+│   ├── audio.js
+│   ├── recording.js
+│   ├── accordion.js
+│   ├── validation.js
+│   ├── auth.js
+│   └── localization.js
+│
+├── locales/
+│   ├── en.json
+│   └── pl.json
+│
+├── assets/
+│   └── favicon.svg
+│
+├── README.md
+├── LICENSE
+└── .gitignore
+The final structure may be adjusted during implementation.
+
+8.2 Multilingual Support
+Objective: Introduce Polish localisation while preserving the existing English interface.
+
+Planned changes:
+
+English remains the default language.
+Add Polish language support.
+Introduce a language selection control.
+Centralise all interface translations.
+Translate buttons, labels, descriptions and status messages.
+Translate recording and audio-related feedback.
+Translate form validation messages.
+Ensure consistent language switching across application screens.
+Initial supported languages:
+
+
+Language	Status
+English	Existing
+Polish	Planned
+Future languages may be added as the application develops.
+
+8.3 Mock Login Screen
+Objective: Introduce a dedicated login interface prepared for future backend integration.
+
+Planned fields and functionality:
+
+Email address.
+Password.
+Show/hide password control.
+Remember me option.
+Forgot password link placeholder.
+Navigation to the signup screen.
+Client-side input validation.
+Inline validation messages.
+Visual indicators for valid and invalid fields.
+Mock form submission.
+The login interface will initially simulate authentication without connecting to a real authentication service.
+
+8.4 Mock Signup Screen
+Objective: Introduce a dedicated registration interface with comprehensive client-side validation.
+
+Planned fields and functionality:
+
+Name.
+Email address.
+Password.
+Confirm password.
+Terms and conditions acceptance.
+Password visibility control.
+Password strength indicator.
+Inline validation messages.
+Visual indicators for valid and invalid fields.
+Navigation to the login screen.
+Mock form submission.
+Validation Requirements
+
+Field	Validation
+Name	Required, reasonable length
+Email	Valid email format
+Password	Minimum length and complexity
+Confirm password	Must match password
+Terms acceptance	Must be accepted
+Validation should provide clear feedback to users without unnecessary interruptions.
+
+8.5 Form Validation Architecture
+Objective: Create reusable validation functionality shared by login and signup forms.
+
+Planned changes:
+
+Centralise validation rules.
+Separate validation logic from presentation.
+Support validation on field blur.
+Validate all fields on form submission.
+Display contextual error messages.
+Provide clear success indicators.
+Support English and Polish validation messages.
+Prevent submission when validation fails.
+The validation module should be reusable when additional forms are introduced.
+
+8.6 Future Backend Integration Preparation
+Objective: Design login and signup forms so that a real authentication backend can be introduced without rebuilding the user interfaces.
+
+Planned changes:
+
+Separate form validation from authentication logic.
+Introduce dedicated login and signup submission functions.
+Define consistent form data structures.
+Establish clear API integration points.
+Handle future server responses and errors.
+Prepare for secure authentication workflows.
+Initial implementation will use mock submission functions.
+
+No real user accounts or authentication services will be provided in this development milestone.
+
+Passwords must not be stored in localStorage or exposed through console logs.
+
+8.7 Quality Assurance and Testing
+Objective: Maintain application stability while introducing architectural and functional changes.
+
+Planned testing areas:
+
+
+ID	Area	Test Objective
+QA-25	Refactoring	Verify existing functionality after file separation
+QA-26	Audio	Verify sound generation after refactoring
+QA-27	Recording	Verify recording, playback and download
+QA-28	Localisation	Verify English interface
+QA-29	Localisation	Verify Polish interface
+QA-30	Login	Validate required fields
+QA-31	Login	Validate email and password
+QA-32	Signup	Validate all required fields
+QA-33	Signup	Verify password matching
+QA-34	Signup	Verify password strength feedback
+QA-35	Signup	Verify terms acceptance
+QA-36	Forms	Verify submission is blocked when validation fails
+QA-37	Navigation	Verify login/signup navigation
+QA-38	Responsive UI	Test authentication screens on mobile
+QA-39	Regression	Verify existing sound functionality remains operational
+QA-40	Browser compatibility	Test supported browsers
+Testing results will be documented after execution.
+
+8.8 Development Milestones
+
+Milestone	Description	Status
+M1	Project architecture refactoring	Planned
+M2	English and Polish localisation	Planned
+M3	Login screen	Planned
+M4	Signup screen	Planned
+M5	Reusable form validation	Planned
+M6	Mock authentication integration	Planned
+M7	Regression and QA testing	Planned
+M8	Version 1.2.0 release	Planned
+8.9 Release Criteria
+Version 1.2.0 should be considered ready for release when:
+
+Existing sound-generation functionality remains operational.
+Recording, replay and download functionality pass regression testing.
+English and Polish interfaces are functional.
+Login and signup screens are accessible.
+Form validation works as expected.
+Mock submissions provide appropriate feedback.
+Navigation between application screens works correctly.
+Responsive layouts are verified.
+No critical defects remain.
+A successful release should include updated documentation, QA execution results and GitHub release notes.
+
+Roadmap status: Planned
+
+Target version: 1.2.0
+
+Project: Sound Lab with Healing
+
+This roadmap is a living development document. Requirements and priorities may be adjusted as implementation progresses.
