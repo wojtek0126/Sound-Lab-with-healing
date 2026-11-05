@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Git metadata
+.git/
+
+# Build output
+build/
+dist/
+out/
+target/
+coverage/
+
+# Environment configuration and secrets
+.env*
+*api-key*
+*api_key*
+*apikey*
+*credentials*
+*secret*
+secrets/
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
