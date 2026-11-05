@@ -226,6 +226,12 @@ Recording Improvements:
 - Added minimum recording-data validation.
 - Prevented empty recordings from displaying replay and download controls.
 - Improved recording-state handling.
+- Recording Interface Improvements
+- Added a minimum recording-size validation using MIN_RECORDING_SIZE.
+- Prevented saving original recordings when no valid recording exists.
+- Automatically hides Start Recording and Stop Recording buttons after a successful recording.
+- Restores recording controls when the user discards the current recording.
+- Improved recording status messages to guide users through the recording process.
 
 8. Future Improvements
 
