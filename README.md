@@ -292,7 +292,8 @@ Update the status of each item as development progresses.
 
 9. Version History
 Version	Description
-1.0.0	Initial public GitHub Pages release
+- 1.0.0	Initial public GitHub Pages release
+- 1.1.0 Improved recording controls, recording validation, synchronized pitch controls and enhanced accordion panel interaction. Successful smoke testing.   
 
 Update this section whenever a new release is published.
 
