@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sound Lab Xv11 - Underwater Day & Night</title>
+<title>Sound Lab with Healing · Underwater Edition</title>
 
 <link rel="stylesheet" href="css/styles.css">
 
@@ -17,10 +17,18 @@
 <!-- DAY / NIGHT SWITCH AND BULB -->
 
 <div class="theme-controls">
-    <span class="theme-label" id="themeLabel">☀️ DAY</span>
+    <span class="theme-label" id="themeLabel" data-i18n="theme.day">☀️ DAY</span>
 
-    <label class="theme-switch" title="Switch between day and night">
-        <input type="checkbox" id="nightSwitch" aria-label="Toggle underwater night mode">
+    <label class="language-control">
+        <span class="visually-hidden" data-i18n="language.label">Language</span>
+        <select id="languageSelect" aria-label="Language" data-i18n-attr="aria-label:language.label">
+            <option value="en">EN</option>
+            <option value="pl">PL</option>
+        </select>
+    </label>
+
+    <label class="theme-switch" title="Switch between day and night" data-i18n-attr="title:theme.switchTitle">
+        <input type="checkbox" id="nightSwitch" aria-label="Toggle underwater night mode" data-i18n-attr="aria-label:theme.toggleLabel">
         <span class="switch-slider"></span>
     </label>
 
@@ -29,7 +37,8 @@
         class="bulb-button"
         id="bulbButton"
         title="Toggle underwater night mode"
-        aria-label="Toggle underwater night mode">
+        aria-label="Toggle underwater night mode"
+        data-i18n-attr="title:theme.toggleLabel;aria-label:theme.toggleLabel">
         💡
     </button>
 </div>
@@ -51,83 +60,83 @@
 
 <div class="container">
 
-    <h1>🌊 Sound Lab</h1>
-    <p class="subtitle">Underwater Edition · Sound Generator v11</p>
+    <h1>🌊 <span data-i18n="app.title">Sound Lab with Healing</span></h1>
+    <p class="subtitle" data-i18n="app.subtitle">Underwater Edition · Sound Generator v11</p>
 
     <div class="stats">
         <div class="stat">
-            <span class="stat-label">Sound</span>
+            <span class="stat-label" data-i18n="stats.sound">Sound</span>
             <span class="stat-value" id="number">-</span>
         </div>
         <div class="stat">
-            <span class="stat-label">Frequency</span>
+            <span class="stat-label" data-i18n="stats.frequency">Frequency</span>
             <span class="stat-value" id="frequency">-</span>
         </div>
         <div class="stat">
-            <span class="stat-label">Waveform</span>
+            <span class="stat-label" data-i18n="stats.waveform">Waveform</span>
             <span class="stat-value" id="waveform">-</span>
         </div>
         <div class="stat">
-            <span class="stat-label">Volume</span>
+            <span class="stat-label" data-i18n="stats.volume">Volume</span>
             <span class="stat-value" id="actualVolume">-</span>
         </div>
     </div>
 
     <div class="panel">
-    <h2>🚀 Generate Sounds</h2>
+    <h2><span data-i18n="generator.title">🚀 Generate Sounds</span></h2>
 
     <div class="buttons">
-        <button id="one">Generate One Custom Sound</button>
-        <button id="randomOne" class="random-button">Generate One Random Sound</button>
-        <button id="sequence">Generate Custom Sequence</button>
-        <button id="randomSequence" class="random-button">Generate Random Sequence</button>
-        <button id="stop" class="stop-button" disabled>■ STOP SOUND</button>
+        <button id="one" data-i18n="generator.customOne">Generate One Custom Sound</button>
+        <button id="randomOne" class="random-button" data-i18n="generator.randomOne">Generate One Random Sound</button>
+        <button id="sequence" data-i18n="generator.customSequence">Generate Custom Sequence</button>
+        <button id="randomSequence" class="random-button" data-i18n="generator.randomSequence">Generate Random Sequence</button>
+        <button id="stop" class="stop-button" disabled data-i18n="generator.stop">■ STOP SOUND</button>
     </div>
 
-    <div id="status">Ready to generate sounds.</div>
+    <div id="status" data-i18n="generator.ready">Ready to generate sounds.</div>
     <div id="progress"></div>
 </div>
 
 <div class="panel">
-        <h2>🔴 Record Your Sounds</h2>
+        <h2><span data-i18n="recording.title">🔴 Record Your Sounds</span></h2>
 
 	<div class="recording-buttons replay-controls" id="replayControls" style="margin-top:12px">
  	   <button id="replayRecording" class="player-button" disabled>
-  	      ▶ REPLAY LATEST RECORDING
+   	      <span data-i18n="recording.replayLatest">▶ REPLAY LATEST RECORDING</span>
   	  </button>
    	 <button id="stopReplay" class="stop-button" disabled>
-    	    ■ STOP REPLAY
+    	    <span data-i18n="recording.stopReplay">■ STOP REPLAY</span>
    	 </button>
 	</div>
 
         <div id="recordingIndicator" class="recording-indicator">
-            ● RECORDING IN PROGRESS
+            <span data-i18n="recording.inProgress">● RECORDING IN PROGRESS</span>
         </div>
 
         <div id="recordStatus">
-            Start recording before generating sounds.
+            <span data-i18n="recording.beforeStart">Start recording before generating sounds.</span>
         </div>
 
 	<div class="recording-buttons recording-controls" id="recordingControls">
    	 <button id="startRecord" class="record-button">
-  	      ● START RECORDING
+   	      <span data-i18n="recording.start">● START RECORDING</span>
   	  </button>
   	  <button id="stopRecord" class="stop-button" disabled>
-  	      ■ STOP RECORDING
+       	  <span data-i18n="recording.stop">■ STOP RECORDING</span>
   	  </button>
 	</div>
 
         <audio id="recordingAudio"></audio>
 
         <div class="recording-actions" id="recordingActions">
-          <button id="saveWav" class="save-button">↓ SAVE AS WAV</button>
+          <button id="saveWav" class="save-button" data-i18n="recording.saveWav">↓ SAVE AS WAV</button>
   	  <button type="button" id="saveOriginal" class="save-button">
-    ↓ SAVE ORIGINAL RECORDING
+    <span data-i18n="recording.saveOriginal">↓ SAVE ORIGINAL RECORDING</span>
 </button>
-  	  <button id="discardRecording" class="discard-button">🗑 DISCARD RECORDING</button>
+  	  <button id="discardRecording" class="discard-button" data-i18n="recording.discard">🗑 DISCARD RECORDING</button>
 	</div>
 
-        <p class="note">
+        <p class="note" data-i18n="recording.note">
             Replay your latest captured sound or sequence without downloading it.
             WAV is widely compatible. The original recording is saved in the
             format supported by your browser, usually WebM/Opus in Chrome or Edge.
@@ -135,74 +144,74 @@
     </div>
 
     <div class="panel golden-panel">
-    <h2>✨ Golden Frequencies</h2>
+    <h2><span data-i18n="goldenFrequencies.title">✨ Golden Frequencies</span></h2>
 
-    <p class="golden-description">
+    <p class="golden-description" data-i18n="goldenFrequencies.description">
         Explore special frequencies and their traditional
         associations with relaxation, meditation and harmony.
     </p>
 
     <div class="control">
-        <label for="goldenCategory">Frequency category</label>
+        <label for="goldenCategory" data-i18n="goldenFrequencies.categoryLabel">Frequency category</label>
         <select id="goldenCategory">
-            <option value="">Choose a category</option>
-            <option value="solfeggio">Solfeggio Frequencies</option>
-            <option value="additional">Additional Solfeggio</option>
-            <option value="tesla">Tesla 3-6-9</option>
-            <option value="angel">Angel Frequencies</option>
-            <option value="schumann">Schumann Resonance</option>
-            <option value="planetary">Planetary Frequencies</option>
-            <option value="brainwave">Brainwave Frequencies</option>
+            <option value="" data-i18n="goldenFrequencies.chooseCategory">Choose a category</option>
+            <option value="solfeggio" data-i18n="goldenFrequencies.categories.solfeggio">Solfeggio Frequencies</option>
+            <option value="additional" data-i18n="goldenFrequencies.categories.additional">Additional Solfeggio</option>
+            <option value="tesla" data-i18n="goldenFrequencies.categories.tesla">Tesla 3-6-9</option>
+            <option value="angel" data-i18n="goldenFrequencies.categories.angel">Angel Frequencies</option>
+            <option value="schumann" data-i18n="goldenFrequencies.categories.schumann">Schumann Resonance</option>
+            <option value="planetary" data-i18n="goldenFrequencies.categories.planetary">Planetary Frequencies</option>
+            <option value="brainwave" data-i18n="goldenFrequencies.categories.brainwave">Brainwave Frequencies</option>
         </select>
     </div>
 
     <div class="control">
-        <label for="goldenFrequency">Select frequency</label>
+        <label for="goldenFrequency" data-i18n="goldenFrequencies.frequencyLabel">Select frequency</label>
         <select id="goldenFrequency" disabled>
-            <option value="">Choose a category first</option>
+            <option value="" data-i18n="goldenFrequencies.chooseCategoryFirst">Choose a category first</option>
         </select>
     </div>
 
-    <div id="goldenDescription" class="golden-info">
+    <div id="goldenDescription" class="golden-info" data-i18n="goldenFrequencies.chooseFrequencyHint">
         Select a frequency to discover its traditional association.
     </div>
 
     <button id="applyGoldenFrequency" disabled>
-        ✨ APPLY FREQUENCY
+        <span data-i18n="goldenFrequencies.apply">✨ APPLY FREQUENCY</span>
     </button>
 </div>
  
     <div class="panel">
-        <h2>🎵 Play Your Own Audio File</h2>
+        <h2><span data-i18n="player.title">🎵 Play Your Own Audio File</span></h2>
         <p class="audio-format-note">
-    ℹ️  Currently supported format: <strong>WAV (.wav)</strong> only.
-        Other audio formats are not supported at the moment.
+            <span data-i18n="player.supportedLead">ℹ️ Currently supported format:</span>
+            <strong>WAV (.wav)</strong><span data-i18n="player.supportedTail"> only. Other audio formats are not supported at the moment.</span>
         </p>
 
         <div class="control">
-            <label for="audioFile">Choose an audio file from your computer</label>
+            <label for="audioFile" data-i18n="player.fileLabel">Choose an audio file from your computer</label>
             <input type="file" id="audioFile" accept="audio/*">
         </div>
 
-        <div id="fileName" class="note">No audio file selected.</div>
+        <div id="fileName" class="note" data-i18n="player.noFile">No audio file selected.</div>
 
         <audio id="uploadedAudio" preload="metadata"></audio>
 
-<p class="player-tooltip" id="playerTooltip">
+<p class="player-tooltip" id="playerTooltip" data-i18n="player.uploadHint">
     💡 Upload a WAV file first before using the playback controls.
     Once the file has loaded, you can play, pause, rewind,
     fast-forward and adjust playback speed.
 </p>      
         <div class="buttons" style="margin-top:15px">
-            <button id="filePlay" class="player-button" disabled>▶ PLAY</button>
-            <button id="filePause" class="player-button" disabled>Ⅱ PAUSE</button>
-            <button id="rewind" class="player-button" disabled>↶ REWIND 10s</button>
-            <button id="forward" class="player-button" disabled>↷ FORWARD 10s</button>
+            <button id="filePlay" class="player-button" disabled data-i18n="player.play">▶ PLAY</button>
+            <button id="filePause" class="player-button" disabled data-i18n="player.pause">Ⅱ PAUSE</button>
+            <button id="rewind" class="player-button" disabled data-i18n="player.rewind">↶ REWIND 10s</button>
+            <button id="forward" class="player-button" disabled data-i18n="player.forward">↷ FORWARD 10s</button>
         </div>
 
         <div class="control" style="margin-top:20px">
             <label for="seekBar">
-                <span>Audio position</span>
+                <span data-i18n="player.position">Audio position</span>
                 <span id="seekPercent">0%</span>
             </label>
             <input type="range" id="seekBar" min="0" max="1000" value="0" disabled>
@@ -213,25 +222,25 @@
         </div>
 
 <div class="speed-row">
-    <label for="playbackSpeed">Playback speed</label>
+    <label for="playbackSpeed" data-i18n="player.speed">Playback speed</label>
     <select id="playbackSpeed" disabled>
-        <option value="0.5">0.5x - Very slow</option>
-        <option value="0.75">0.75x - Slow</option>
-        <option value="1" selected>1x - Normal</option>
-        <option value="1.25">1.25x</option>
-        <option value="1.5">1.5x - Fast</option>
-        <option value="1.75">1.75x</option>
-        <option value="2">2x - Very fast</option>
+        <option value="0.5" data-i18n="player.speedOptions.0.5">0.5x - Very slow</option>
+        <option value="0.75" data-i18n="player.speedOptions.0.75">0.75x - Slow</option>
+        <option value="1" selected data-i18n="player.speedOptions.1">1x - Normal</option>
+        <option value="1.25" data-i18n="player.speedOptions.1.25">1.25x</option>
+        <option value="1.5" data-i18n="player.speedOptions.1.5">1.5x - Fast</option>
+        <option value="1.75" data-i18n="player.speedOptions.1.75">1.75x</option>
+        <option value="2" data-i18n="player.speedOptions.2">2x - Very fast</option>
     </select>
 </div>
 <div class="recording-actions" id="audioFileActions">
     <button id="discardUploadedAudio" class="discard-button">
-        🗑 DISCARD AUDIO FILE
+        <span data-i18n="player.discard">🗑 DISCARD AUDIO FILE</span>
     </button>
 </div>
-        <div id="playerStatus">Choose an audio file to begin.</div>
+        <div id="playerStatus" data-i18n="player.initialStatus">Choose an audio file to begin.</div>
 
-        <p class="note">
+        <p class="note" data-i18n="player.note">
             Rewind and forward skip 10 seconds. Playback speed changes the
             speed of the uploaded audio. Your original file is not modified.
             Supported formats depend on your browser.
@@ -239,22 +248,22 @@
     </div>
 
     <div class="panel">
-        <h2>⚙️ Sound Settings</h2>
+        <h2><span data-i18n="settings.title">⚙️ Sound Settings</span></h2>
 
         <div class="control">
-            <label for="waveformSelect">Waveform</label>
+            <label for="waveformSelect" data-i18n="settings.waveform">Waveform</label>
             <select id="waveformSelect">
-                <option value="random">Random waveform</option>
-                <option value="sine">Sine</option>
-                <option value="square">Square</option>
-                <option value="triangle">Triangle</option>
-                <option value="sawtooth">Sawtooth</option>
+                <option value="random" data-i18n="settings.randomWaveform">Random waveform</option>
+                <option value="sine" data-i18n="settings.sine">Sine</option>
+                <option value="square" data-i18n="settings.square">Square</option>
+                <option value="triangle" data-i18n="settings.triangle">Triangle</option>
+                <option value="sawtooth" data-i18n="settings.sawtooth">Sawtooth</option>
             </select>
         </div>
 
         <div class="control">
             <label for="minPitch">
-                <span>Minimum pitch</span>
+                <span data-i18n="settings.minimumPitch">Minimum pitch</span>
                 <span id="minPitchValue">100 Hz</span>
             </label>
             <input type="range" id="minPitch" min="0.1" max="2000" value="100" step="0.01">
@@ -262,7 +271,7 @@
 
         <div class="control">
             <label for="maxPitch">
-                <span>Maximum pitch</span>
+                <span data-i18n="settings.maximumPitch">Maximum pitch</span>
                 <span id="maxPitchValue">1500 Hz</span>
             </label>
             <input type="range" id="maxPitch" min="0.1" max="2000" value="1500" step="0.01">
@@ -270,11 +279,11 @@
     </div>
 
     <div class="panel">
-        <h2>🎛️ Custom Sound Settings</h2>
+        <h2><span data-i18n="settings.customTitle">🎛️ Custom Sound Settings</span></h2>
 
         <div class="control">
             <label for="soundDuration">
-                <span>Sound duration</span>
+                <span data-i18n="settings.duration">Sound duration</span>
                 <span id="durationValue">3 seconds</span>
             </label>
             <input type="range" id="soundDuration" min="1" max="60" value="3">
@@ -282,7 +291,7 @@
 
         <div class="control">
             <label for="soundVolume">
-                <span>Sound volume</span>
+                <span data-i18n="settings.volume">Sound volume</span>
                 <span id="volumeValue">50%</span>
             </label>
             <input type="range" id="soundVolume" min="1" max="100" value="50">
@@ -290,7 +299,7 @@
 
         <div class="control">
             <label for="gap">
-                <span>Timeout between sounds</span>
+                <span data-i18n="settings.gap">Timeout between sounds</span>
                 <span id="gapValue">2 seconds</span>
             </label>
             <input type="range" id="gap" min="0" max="10" value="2">
@@ -298,7 +307,7 @@
 
         <div class="control">
             <label for="soundCount">
-                <span>Custom sequence sounds</span>
+                <span data-i18n="settings.soundCount">Custom sequence sounds</span>
                 <span id="countValue">7</span>
             </label>
             <input type="range" id="soundCount" min="1" max="30" value="7">
@@ -306,7 +315,7 @@
 
         <div class="control">
             <label for="randomMax">
-                <span>Maximum random sequence sounds</span>
+                <span data-i18n="settings.randomMax">Maximum random sequence sounds</span>
                 <span id="randomMaxValue">10</span>
             </label>
             <input type="range" id="randomMax" min="1" max="50" value="10">
@@ -317,24 +326,25 @@
 
 <footer class="support-footer">
 
-    💙 If you love it, please support the project!
+    <span data-i18n="support.message">💙 If you love it, please support the project!</span>
 
     <div class="blik-number">
-        BLIK: +48 603 986 821
+        <span data-i18n="support.blikLabel">BLIK:</span> +48 603 986 821
     </div>
 
     <div class="support-thanks">
-        Thank you for your support! 🐬
+        <span data-i18n="support.thanks">Thank you for your support! 🐬</span>
     </div>
 
 </footer>
 
     <div class="footer">
-        SOUND LAB X v11 · © 2026 wojtek0126. All Rights Reserved. 🐠
+        <span data-i18n="footer">SOUND LAB X v11 · © 2026 wojtek0126. All Rights Reserved. 🐠</span>
     </div>
 
 </div>
 
+<script src="js/localization.js"></script>
 <script src="js/app.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/recording.js"></script>

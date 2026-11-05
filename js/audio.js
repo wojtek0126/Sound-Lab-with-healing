@@ -65,7 +65,7 @@ function stopSound() {
         activeOscillator = null;
     }
 
-    $("status").textContent = "Stopping...";
+    setLocalizedText($("status"), "generator.stopping");
 }
 
 function updateButtons(playing) {
@@ -118,7 +118,7 @@ function playSound(index, duration, volume) {
 
         $("number").textContent = index;
         $("frequency").textContent = Number(frequency.toFixed(2)) + " Hz";
-        $("waveform").textContent = waveform.toUpperCase();
+        $("waveform").textContent = t("settings." + waveform).toUpperCase();
         $("actualVolume").textContent = Math.round(volume) + "%";
 
         oscillator.onended = () => {
@@ -145,7 +145,7 @@ async function generate(count, randomMode, singleSound = false) {
     updateButtons(true);
 
     $("progress").textContent = "";
-    $("status").textContent = "Generating sounds...";
+    setLocalizedText($("status"), "generator.generating");
 
     try {
         initializeAudio();
@@ -159,8 +159,9 @@ async function generate(count, randomMode, singleSound = false) {
                     : Number($("gap").value);
 
                 if (gap > 0) {
-                    $("status").textContent =
-                        "Waiting " + gap.toFixed(1) + " seconds...";
+                    setLocalizedText($("status"), "generator.waiting", {
+                        seconds: gap.toFixed(1)
+                    });
 
                     await wait(gap);
                 }
@@ -176,18 +177,24 @@ async function generate(count, randomMode, singleSound = false) {
                 ? randomInt(1, 100)
                 : Number($("soundVolume").value);
 
-            $("status").textContent = "Playing sound " + i + "...";
-            $("progress").textContent = "Sound " + i + " of " + count;
+            setLocalizedText($("status"), "generator.playing", { index: i });
+            setLocalizedText($("progress"), "generator.progress", {
+                index: i,
+                count
+            });
 
             await playSound(i, duration, volume);
         }
 
-        $("status").textContent = stopRequested
-            ? "Generation stopped."
-            : "Generation complete!";
+        setLocalizedText(
+            $("status"),
+            stopRequested ? "generator.stopped" : "generator.complete"
+        );
 
     } catch (error) {
-        $("status").textContent = "Audio error: " + error.message;
+        setLocalizedText($("status"), "generator.audioError", {
+            message: error.message
+        });
     } finally {
         isGenerating = false;
         activeOscillator = null;
@@ -255,10 +262,9 @@ if (!file.name.toLowerCase().endsWith(".wav")) {
 
     $("playerTooltip").style.display = "block";
 
-    $("fileName").textContent = "No audio file selected.";
+    setLocalizedText($("fileName"), "player.noFile");
 
-    $("playerStatus").textContent =
-        "Unsupported format. Please select a WAV file.";
+    setLocalizedText($("playerStatus"), "player.unsupportedFormat");
 
     $("playerStatus").style.color = "#ff6b6b";
 
@@ -269,8 +275,7 @@ if (!file.name.toLowerCase().endsWith(".wav")) {
     $("audioFileActions").classList.remove("visible");
 
     setTimeout(() => {
-        $("playerStatus").textContent =
-            "Choose an audio file to begin.";
+        setLocalizedText($("playerStatus"), "player.initialStatus");
 
         $("playerStatus").style.color = "";
     }, 2000);
@@ -290,8 +295,10 @@ if (!file.name.toLowerCase().endsWith(".wav")) {
     uploadedUrl = URL.createObjectURL(file);
     uploadedAudio.src = uploadedUrl;
 
-    $("fileName").textContent = "Selected file: " + file.name;
-    $("playerStatus").textContent = "Loading audio file...";
+    setLocalizedText($("fileName"), "player.selectedFile", {
+        filename: file.name
+    });
+    setLocalizedText($("playerStatus"), "player.loading");
     $("audioFileActions").classList.add("visible");
     setPlayerButtons(false);
 });
@@ -301,36 +308,36 @@ uploadedAudio.addEventListener("loadedmetadata", () => {
     uploadedAudio.playbackRate = Number($("playbackSpeed").value);
     updatePlayerDisplay();
 
-    $("playerStatus").textContent = "Audio ready to play.";
+    setLocalizedText($("playerStatus"), "player.ready");
 });
 
 uploadedAudio.addEventListener("timeupdate", updatePlayerDisplay);
 
 uploadedAudio.addEventListener("play", () => {
-    $("playerStatus").textContent = "Playing audio...";
+    setLocalizedText($("playerStatus"), "player.playing");
 });
 
 uploadedAudio.addEventListener("pause", () => {
     if (!uploadedAudio.ended) {
-        $("playerStatus").textContent = "Audio paused.";
+        setLocalizedText($("playerStatus"), "player.paused");
     }
 });
 
 uploadedAudio.addEventListener("ended", () => {
-    $("playerStatus").textContent = "Playback finished.";
+    setLocalizedText($("playerStatus"), "player.finished");
 });
 
 uploadedAudio.addEventListener("error", () => {
-    $("playerStatus").textContent =
-        "This audio format could not be played by your browser.";
+    setLocalizedText($("playerStatus"), "player.playbackError");
 });
 
 $("filePlay").addEventListener("click", async () => {
     try {
         await uploadedAudio.play();
     } catch (error) {
-        $("playerStatus").textContent =
-            "Could not play this file: " + error.message;
+        setLocalizedText($("playerStatus"), "player.playError", {
+            message: error.message
+        });
     }
 });
 
@@ -364,8 +371,9 @@ $("seekBar").addEventListener("input", () => {
 $("playbackSpeed").addEventListener("change", () => {
     uploadedAudio.playbackRate = Number($("playbackSpeed").value);
 
-    $("playerStatus").textContent =
-        "Playback speed: " + uploadedAudio.playbackRate + "x";
+    setLocalizedText($("playerStatus"), "player.speedStatus", {
+        speed: uploadedAudio.playbackRate
+    });
 });
 
 function discardUploadedAudio() {
@@ -400,9 +408,8 @@ function discardUploadedAudio() {
     $("audioFileActions").classList.remove("visible");
 
     // Reset status
-    $("fileName").textContent = "No audio file selected.";
-    $("playerStatus").textContent =
-        "Choose an audio file to begin.";
+    setLocalizedText($("fileName"), "player.noFile");
+    setLocalizedText($("playerStatus"), "player.initialStatus");
 
     // For enabling and disabling text about file to download format
     $("playerTooltip").style.display = "block";    
