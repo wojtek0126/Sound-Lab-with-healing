@@ -243,7 +243,9 @@ The following items have been identified for future maintenance and improvement.
 
 ID	Area	Issue / Planned Improvement	Status
 BUG-01	Recording	Prevent users from saving the original recording when no recording has been created.	Pending
-BUG-02	Recording	Improve the error message displayed when attempting to save a WAV file without an available recording. Use consistent wording across recording actions.	Pending
+BUG-02	Recording	Improve the error message displayed when attempting to save a WAV file without an available recording. Use consistent wording across recording
+actions.	Pending
+BUG-03 Recording Investigate why an apparently empty recording produces a non-empty Blob and triggers the download process. Investigation
 
 Planned Behaviour
 
