@@ -301,6 +301,26 @@ BUG-02	Recording	Improve the error message displayed when attempting to save a W
 actions.	Resolved
 BUG-03 Recording Investigate why an apparently empty recording produces a non-empty Blob and triggers the download process. Resolved, is never empty, applied minimum allowed file size limit
 
+
+### Post-release UI/UX QA Log — English/Polish release
+
+The following five layout issues were reported during post-release smoke testing and a mini regression pass. Android/mobile behaviour was specifically reported for items UI-01, UI-02, UI-03 and UI-05. UI-04 was reported in both English and Polish locales. These are user-reported observations; they have not been independently reproduced in every browser/device combination.
+
+| ID | Area | Observed behaviour | Expected behaviour | Context | Status |
+|---|---|---|---|---|---|
+| UI-01 | Main heading / responsive layout | The app title (“Sound Lab”) overflows its containing panel on Android/mobile. | The title remains fully inside the panel at supported viewport widths, without horizontal overflow or clipping. | Android/mobile; verify both locales and narrow widths. | Open |
+| UI-02 | Waveform statistic / Polish typography | Longer Polish waveform names wrap at awkward points inside a word, making the label/value look unnatural. | Polish words should wrap at natural word boundaries. If a value cannot fit, adjust its available width or responsive typography rather than breaking it mid-word. | Polish; reported on Android/mobile. | Open |
+| UI-03 | Recording replay button | The translated “Replay latest recording” button label (“Odtwórz ostatnie nagranie”) occupies three lines. | The label should have a balanced, intentional layout (preferably no more than two lines on narrow screens), remain readable, and keep the button usable without clipping or truncation. | Polish; reported on Android/mobile. | Open |
+| UI-04 | Uploaded-audio playback speed control | The playback-speed dropdown clips/overlaps the “Playback speed” label in the “Play Your Own Audio File” section. | The label and dropdown must have sufficient space and remain fully visible, without overlap or clipping. | Both English and Polish; also reported outside Android. | Open |
+| UI-05 | Custom sound settings / value alignment | “Gap between sounds” value (e.g. “x seconds”) breaks onto multiple lines, while “Sound duration” value stays on one line. | Both duration and gap values should follow the same consistent layout rule; the numeric value and unit should stay together. | Polish; reported on Android/mobile. | Open |
+
+**Triage note:** These are presentation and responsive-layout defects. No audio-generation, recording, playback, or localisation-data failure has been reported as part of these five findings. Do not change audio behaviour or translation wording unless investigation demonstrates that it is necessary and the change is explicitly reviewed.
+
+**Related implementation areas to inspect:** `index.html`, `css/styles.css`, `js/settings.js`, `js/recording.js`, and the existing locale dictionaries in `locales/`. In particular, inspect the full CSS cascade and all responsive overrides before adding new rules; `styles.css` contains multiple rules for the playback-speed row, including high-specificity/`!important` declarations.
+
+See [`UI_UX_FIX_PLAN.md`](UI_UX_FIX_PLAN.md) for the proposed remediation and verification sequence, and [`COPILOT_UI_UX_FIX_PROMPT.md`](COPILOT_UI_UX_FIX_PROMPT.md) for the supervised implementation prompt.
+
+
 Planned Behaviour
 
 Save Original Recording should only be available when a valid recording exists.
