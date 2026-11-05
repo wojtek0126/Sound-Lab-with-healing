@@ -1174,6 +1174,11 @@ body.night-mode .support-footer {
     }
 }
 
+#startRecord[hidden],
+#stopRecord[hidden] {
+    display: none !important;
+}
+
 </style>
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -1289,7 +1294,9 @@ body.night-mode .support-footer {
 
         <div class="recording-actions" id="recordingActions">
           <button id="saveWav" class="save-button">↓ SAVE AS WAV</button>
-  	  <button id="saveOriginal" class="save-button">↓ SAVE ORIGINAL RECORDING</button>
+  	  <button type="button" id="saveOriginal" class="save-button">
+    ↓ SAVE ORIGINAL RECORDING
+</button>
   	  <button id="discardRecording" class="discard-button">🗑 DISCARD RECORDING</button>
 	</div>
 
@@ -1513,11 +1520,14 @@ let isGenerating = false;
 let mediaRecorder = null;
 let recordedChunks = [];
 let recordedBlob = null;
+let hasRecording = false;
 let originalExtension = "webm";
 let recordingUrl = null;
 let uploadedUrl = null;
 
 const $ = id => document.getElementById(id);
+
+const MIN_RECORDING_SIZE = 200; // 200 KB
 
 /* DAY / NIGHT SWITCH */
 
@@ -1776,6 +1786,7 @@ function startRecording() {
 
     recordedChunks = [];
     recordedBlob = null;
+    hasRecording = false;   
 
     $("recordingActions").classList.remove("visible");
     $("replayControls").classList.remove("visible");
@@ -1796,21 +1807,40 @@ function startRecording() {
             }
         };
 
-        mediaRecorder.onstop = () => {
-            recordedBlob = new Blob(recordedChunks, {
-                type: mediaRecorder.mimeType || "audio/webm"
-            });
+mediaRecorder.onstop = () => {
+    recordedBlob = new Blob(recordedChunks, {
+        type: mediaRecorder.mimeType || "audio/webm"
+        
+    });
 
-            if (recordingUrl) URL.revokeObjectURL(recordingUrl);
-            recordingUrl = URL.createObjectURL(recordedBlob);
+    hasRecording = recordedChunks.some(chunk => chunk.size > MIN_RECORDING_SIZE);
 
-            $("recordingAudio").src = recordingUrl;
-            $("replayControls").classList.add("visible");
-            $("replayRecording").disabled = false;
-            $("recordStatus").textContent =
-                "Recording ready! You can replay or save it.";
-            $("recordingActions").classList.add("visible");
-        };
+    if (!hasRecording) {
+        recordedBlob = null;
+        $("recordStatus").textContent =
+            "Nothing to save. Please start Recording, generate, and then click Stop Recording.";
+
+        $("recordingActions").classList.remove("visible");
+        $("replayControls").classList.remove("visible");
+        return;
+    }
+
+    // Hide recording buttons after successful recording
+    $("startRecord").hidden = true;
+    $("stopRecord").hidden = true;
+
+    if (recordingUrl) URL.revokeObjectURL(recordingUrl);
+    recordingUrl = URL.createObjectURL(recordedBlob);
+
+    $("recordingAudio").src = recordingUrl;
+    $("replayControls").classList.add("visible");
+    $("replayRecording").disabled = false;
+
+    $("recordStatus").textContent =
+        "Recording ready! You can replay or save it.";
+
+    $("recordingActions").classList.add("visible");
+};
 
         mediaRecorder.start();
 
@@ -1845,6 +1875,10 @@ function discardRecording() {
     audio.removeAttribute("src");
     audio.load();
 
+    $("startRecord").style.display = "";
+    $("stopRecord").style.display = "";
+    $("stopRecord").disabled = true;
+
     // Release the temporary recording URL
     if (recordingUrl) {
         URL.revokeObjectURL(recordingUrl);
@@ -1854,10 +1888,18 @@ function discardRecording() {
     // Clear the recording data
     recordedBlob = null;
     recordedChunks = [];
+    hasRecording = false; 
+    
+    // Restore recording buttons
+    $("startRecord").hidden = false;
+    $("stopRecord").hidden = false;
+
+    $("startRecord").disabled = false;
+    $("stopRecord").disabled = true;
 
     // Reset recording controls
     $("recordingActions").classList.remove("visible");
- $("replayControls").classList.remove("visible");
+    $("replayControls").classList.remove("visible");
     $("replayRecording").disabled = true;
     $("stopReplay").disabled = true;
 
@@ -1920,7 +1962,11 @@ function downloadBlob(blob, filename) {
 }
 
 function saveOriginal() {
-    if (!recordedBlob) return;
+    if (!hasRecording || !recordedBlob) {
+        $("recordStatus").textContent =
+            "No recording available. Please record a sound or sequence first.";
+        return;
+    }
 
     downloadBlob(
         recordedBlob,
@@ -1983,7 +2029,11 @@ function audioBufferToWav(buffer) {
 }
 
 async function saveWav() {
-    if (!recordedBlob) return;
+    if (!hasRecording || !recordedBlob) {
+            $("recordStatus").textContent =
+            "No recording available. Please record a sound or sequence first.";
+        return;
+}
 
     $("recordStatus").textContent = "Converting recording to WAV...";
 
@@ -2594,6 +2644,7 @@ function stopGoldenStars() {
 
 setNightMode(false);
 
+
 /* FOLDABLE PANELS */
 
 document.querySelectorAll(".panel").forEach(panel => {
@@ -2614,7 +2665,7 @@ document.querySelectorAll(".panel").forEach(panel => {
 
     panel.appendChild(content);
 
-   // Create + / - toggle button
+    // Create + / - toggle button
     const toggleButton = document.createElement("button");
 
     toggleButton.type = "button";
@@ -2623,20 +2674,18 @@ document.querySelectorAll(".panel").forEach(panel => {
     toggleButton.setAttribute("aria-label", "Expand section");
     toggleButton.setAttribute("aria-expanded", "false");
 
-// Collapse every panel by default
-panel.classList.add("collapsed");
+    // Collapse every panel by default
+    panel.classList.add("collapsed");
 
-heading.appendChild(toggleButton);
+    heading.appendChild(toggleButton);
 
-    // Toggle section
-    toggleButton.addEventListener("click", () => {
+    // Shared toggle function
+    function togglePanel() {
 
         const collapsed = panel.classList.toggle("collapsed");
 
-        // Change + / - symbol
         toggleButton.textContent = collapsed ? "+" : "−";
 
-        // Update accessibility attributes
         toggleButton.setAttribute(
             "aria-expanded",
             String(!collapsed)
@@ -2646,7 +2695,25 @@ heading.appendChild(toggleButton);
             "aria-label",
             collapsed ? "Expand section" : "Collapse section"
         );
+    }
 
+    // Clicking the + / - button always toggles
+    toggleButton.addEventListener("click", event => {
+        event.stopPropagation();
+        togglePanel();
+    });
+
+    // Clicking the panel expands it ONLY when collapsed
+    panel.addEventListener("click", event => {
+
+        if (!panel.classList.contains("collapsed")) return;
+
+        // Ignore clicks on interactive elements
+        if (event.target.closest(
+            "button, input, select, textarea, a, audio, label"
+        )) return;
+
+        togglePanel();
     });
 
 });
