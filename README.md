@@ -166,8 +166,14 @@ QA-18    Attempt to save original recording without recording anything    Expect
 QA-19    Attempt to save WAV without recording anything    Expected: Download is prevented and an informative error message appears
 QA-20    Complete a valid recording Expected: Start Recording and Stop Recording buttons disappear
 QA-20    Discard a completed recording Expected: Recording controls become visible again
-QA-21    Attempt to save without a valid recording Expected: Download is prevented and an informative message appears |
-
+QA-21    Attempt to save without a valid recording Expected: Download is prevented and an informative message appears 
+QA-22    Click folded panel background Expected: Panel expands
+QA-23    Click folded panel heading Expected: Panel expands
+QA-24    Click + button Expected: Panel expands
+QA-25    Click − button Expected: Panel collapses
+QA-26    Click buttons inside expanded panel Expected: Normal button functionality preserved
+QA-27    Operate sliders inside expanded panel Expected: Sliders work without collapsing panel
+QA-28    Test accordion on all panels Expected: Consistent behaviour across sections
 QA Execution Log
 
 Use this template when testing a new release:
@@ -196,33 +202,41 @@ Created the Sound Lab with Healing application.
 Established the browser-based application structure.
 Added sound-related functionality.
 Developed the initial visual interface.
-UI Improvements
-Pitch Control Improvements
-Implemented synchronized minimum and maximum pitch sliders.
-Prevented minimum pitch from exceeding maximum pitch.
-Prevented maximum pitch from falling below minimum pitch.
-Added automatic adjustment of the opposite slider.
-Ensured pitch value labels update immediately.
-Introduced additional golden-star visual details.
-Improved the day/night theme switch.
-Reduced the theme switch width.
-Moved the theme switch towards the left side of the interface.
-Branding
-Selected the golden healing star as the application's visual symbol.
-Prepared a custom SVG favicon.
-Replaced the default browser globe icon with project branding.
-GitHub Publication
-Created the GitHub repository.
-Selected BSD 2-Clause licensing.
-Prepared index.html and favicon.svg.
-Uploaded the application to GitHub.
-Configured GitHub Pages.
-Successfully published the application online.
-Documentation
-Prepared project documentation.
-Added developer instructions.
-Defined manual QA scenarios.
-Established a progress tracking structure.
+UI Improvements:
+- Accordion and Panel Interaction Improvements
+- Implemented expandable and collapsible interface panels.
+- Enabled clicking anywhere on a folded panel to expand it.
+- Preserved dedicated + and − controls.
+- Restricted panel-background expansion to folded panels only.
+- Prevented interactive elements from accidentally triggering accordion behaviour.
+- Preserved normal operation of buttons, sliders, audio controls and other interactive elements.
+- Improved usability and accessibility through updated ARIA attributes.
+Pitch Control Improvements:
+- Implemented synchronized minimum and maximum pitch sliders.
+- Prevented minimum pitch from exceeding maximum pitch.
+- Prevented maximum pitch from falling below minimum pitch.
+- Added automatic adjustment of the opposite slider.
+- Ensured pitch value labels update immediately.
+- Introduced additional golden-star visual details.
+- Improved the day/night theme switch.
+- Reduced the theme switch width.
+- Moved the theme switch towards the left side of the interface.
+Branding:
+- Selected the golden healing star as the application's visual symbol.
+- Prepared a custom SVG favicon.
+- Replaced the default browser globe icon with project branding.
+GitHub Publication:
+- Created the GitHub repository.
+- Selected BSD 2-Clause licensing.
+- Prepared index.html and favicon.svg.
+- Uploaded the application to GitHub.
+- Configured GitHub Pages.
+- Successfully published the application online.
+Documentation:
+- Prepared project documentation.
+- Added developer instructions.
+- Defined manual QA scenarios.
+- Established a progress tracking structure.
 Recording Improvements:
 - Introduced explicit hasRecording state tracking.
 - Added minimum recording-data validation.
