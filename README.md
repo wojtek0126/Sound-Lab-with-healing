@@ -234,7 +234,11 @@ Additional visual themes.
 Improved mobile experience.
 Expanded automated QA testing.
 Accessibility improvements.
-
+Recording Improvements (Planned)
+Investigate empty recording detection.
+Prevent downloading original recordings when no valid recording exists.
+Improve consistency of error messages between recording download options.
+Ensure recording controls correctly reflect recording availability.
 These are proposed enhancements and are not necessarily implemented.
 
 8. Known Issues and Planned Fixes
