@@ -221,8 +221,13 @@ Prepared project documentation.
 Added developer instructions.
 Defined manual QA scenarios.
 Established a progress tracking structure.
+Recording Improvements:
+- Introduced explicit hasRecording state tracking.
+- Added minimum recording-data validation.
+- Prevented empty recordings from displaying replay and download controls.
+- Improved recording-state handling.
 
-7. Future Improvements
+8. Future Improvements
 
 Potential future development ideas:
 
@@ -246,7 +251,7 @@ These are proposed enhancements and are not necessarily implemented.
 The following items have been identified for future maintenance and improvement.
 
 ID	Area	Issue / Planned Improvement	Status
-BUG-01	Recording	Prevent users from saving the original recording when no recording has been created.	Pending
+BUG-01	Recording	Prevent users from saving the original recording when no recording has been created.	Completed
 BUG-02	Recording	Improve the error message displayed when attempting to save a WAV file without an available recording. Use consistent wording across recording
 actions.	Pending
 BUG-03 Recording Investigate why an apparently empty recording produces a non-empty Blob and triggers the download process. Investigation
