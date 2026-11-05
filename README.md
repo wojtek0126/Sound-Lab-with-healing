@@ -256,6 +256,21 @@ Code Refactoring – Phase 1
 - Deployed the refactored application to GitHub Pages.
 - Successfully completed post-deployment smoke testing.
 - Confirmed that the application remains functional after refactoring.
+- Localization – Initial Setup
+Created a dedicated locales/ directory.
+Added en.json as the English translation dictionary.
+Added pl.json as the Polish translation dictionary.
+Populated both localization files with initial translation data.
+Established the foundation for separating interface text from application logic.
+Prepared the project for bilingual support (English and Polish).
+Planned next steps:
+
+Implement the language-switching mechanism.
+Connect HTML interface elements to translation keys.
+Translate dynamic status messages and notifications.
+Ensure consistent translations across all application modules.
+Test language switching and persistence.
+Status: Localization files prepared. Integration pending.
 
 8. Future Improvements
 
