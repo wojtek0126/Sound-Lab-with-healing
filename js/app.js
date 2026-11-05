@@ -24,12 +24,16 @@ function setNightMode(enabled) {
     document.body.classList.toggle("night-mode", enabled);
 
     $("nightSwitch").checked = enabled;
-    $("themeLabel").textContent = enabled ? "🌙 NIGHT" : "☀️ DAY";
+    setLocalizedText(
+        $("themeLabel"),
+        enabled ? "theme.night" : "theme.day"
+    );
     $("bulbButton").textContent = "💡";
 
     $("bulbButton").title = enabled
-        ? "Switch back to underwater daytime"
-        : "Switch to underwater night mode";
+        ? t("theme.switchToDay")
+        : t("theme.switchToNight");
+    $("bulbButton").setAttribute("aria-label", t("theme.toggleLabel"));
 }
 
 $("nightSwitch").addEventListener("change", event => {
@@ -37,9 +41,15 @@ $("nightSwitch").addEventListener("change", event => {
 });
 
 $("bulbButton").addEventListener("click", () => {
-    setNightMode(!$("nightSwitch").checked);
+    setNightMode(!$ ("nightSwitch").checked);
+});
+
+document.addEventListener("languagechange", () => {
+    setNightMode($("nightSwitch").checked);
 });
 
 /* START IN DAY MODE */
 
-setNightMode(false);
+localizationReady.then(ready => {
+    if (ready) setNightMode(false);
+});

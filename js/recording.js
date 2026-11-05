@@ -16,8 +16,7 @@ function getRecordingType() {
 
 function startRecording() {
     if (!window.MediaRecorder) {
-        $("recordStatus").textContent =
-            "Recording is not supported by this browser.";
+        setLocalizedText($("recordStatus"), "recording.unsupported");
         return;
     }
 
@@ -58,8 +57,7 @@ mediaRecorder.onstop = () => {
 
     if (!hasRecording) {
         recordedBlob = null;
-        $("recordStatus").textContent =
-            "Nothing to save. Please start Recording, generate, and then click Stop Recording.";
+        setLocalizedText($("recordStatus"), "recording.nothingToSave");
 
         $("recordingActions").classList.remove("visible");
         $("replayControls").classList.remove("visible");
@@ -77,8 +75,7 @@ mediaRecorder.onstop = () => {
     $("replayControls").classList.add("visible");
     $("replayRecording").disabled = false;
 
-    $("recordStatus").textContent =
-        "Recording ready! You can replay or save it.";
+    setLocalizedText($("recordStatus"), "recording.readyToReplay");
 
     $("recordingActions").classList.add("visible");
 };
@@ -88,11 +85,12 @@ mediaRecorder.onstop = () => {
         $("startRecord").disabled = true;
         $("stopRecord").disabled = false;
         $("recordingIndicator").classList.add("active");
-        $("recordStatus").textContent = "Recording audio...";
+        setLocalizedText($("recordStatus"), "recording.recordingAudio");
 
     } catch (error) {
-        $("recordStatus").textContent =
-            "Could not start recording: " + error.message;
+        setLocalizedText($("recordStatus"), "recording.startFailed", {
+            message: error.message
+        });
     }
 }
 
@@ -104,7 +102,7 @@ function stopRecording() {
     $("startRecord").disabled = false;
     $("stopRecord").disabled = true;
     $("recordingIndicator").classList.remove("active");
-    $("recordStatus").textContent = "Preparing your recording...";
+    setLocalizedText($("recordStatus"), "recording.preparing");
 }
 
 function discardRecording() {
@@ -144,8 +142,7 @@ function discardRecording() {
     $("replayRecording").disabled = true;
     $("stopReplay").disabled = true;
 
-    $("recordStatus").textContent =
-        "Recording discarded. Ready for a new recording.";
+    setLocalizedText($("recordStatus"), "recording.discarded");
 }
 
 /* REPLAY LATEST RECORDING */
@@ -160,12 +157,11 @@ async function replayRecording() {
         audio.currentTime = 0;
         await audio.play();
 
-        $("recordStatus").textContent = "Replaying latest recording...";
+        setLocalizedText($("recordStatus"), "recording.replaying");
         $("replayRecording").disabled = true;
         $("stopReplay").disabled = false;
     } catch (error) {
-        $("recordStatus").textContent =
-            "Nothing to replay. please generate a sound or sequence first";
+        setLocalizedText($("recordStatus"), "recording.replayUnavailable");
     }
 }
 
@@ -177,13 +173,13 @@ function stopReplay() {
 
     $("replayRecording").disabled = !recordedBlob;
     $("stopReplay").disabled = true;
-    $("recordStatus").textContent = "Replay stopped.";
+    setLocalizedText($("recordStatus"), "recording.replayStopped");
 }
 
 $("recordingAudio").addEventListener("ended", () => {
     $("replayRecording").disabled = !recordedBlob;
     $("stopReplay").disabled = true;
-    $("recordStatus").textContent = "Replay finished.";
+    setLocalizedText($("recordStatus"), "recording.replayFinished");
 });
 
 /* DOWNLOAD RECORDINGS */
@@ -204,8 +200,7 @@ function downloadBlob(blob, filename) {
 
 function saveOriginal() {
     if (!hasRecording || !recordedBlob) {
-        $("recordStatus").textContent =
-            "No recording available. Please record a sound or sequence first.";
+        setLocalizedText($("recordStatus"), "recording.noRecording");
         return;
     }
 
@@ -271,12 +266,11 @@ function audioBufferToWav(buffer) {
 
 async function saveWav() {
     if (!hasRecording || !recordedBlob) {
-            $("recordStatus").textContent =
-            "No recording available. Please record a sound or sequence first.";
+        setLocalizedText($("recordStatus"), "recording.noRecording");
         return;
 }
 
-    $("recordStatus").textContent = "Converting recording to WAV...";
+    setLocalizedText($("recordStatus"), "recording.convertingWav");
 
     try {
         initializeAudio();
@@ -287,9 +281,8 @@ async function saveWav() {
 
         downloadBlob(wavBlob, "random-sound-lab-recording.wav");
 
-        $("recordStatus").textContent = "WAV file created successfully!";
+        setLocalizedText($("recordStatus"), "recording.wavCreated");
     } catch (error) {
-        $("recordStatus").textContent =
-            "Could not convert to WAV. Try saving the original format.";
+        setLocalizedText($("recordStatus"), "recording.wavFailed");
     }
 }

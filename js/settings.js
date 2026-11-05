@@ -1,20 +1,40 @@
 /* SLIDERS */
 
-function connectSlider(id, outputId, suffix) {
+const sliderLabelUpdates = [];
+
+function formatSeconds(value) {
+    const amount = Number(value);
+
+    if (window.currentLanguage === "pl") {
+        if (amount === 1) return t("settings.secondSingular");
+        if (amount % 10 >= 2 && amount % 10 <= 4 && (amount % 100 < 12 || amount % 100 > 14)) {
+            return t("settings.secondsFew");
+        }
+        return t("settings.seconds");
+    }
+
+    return t(amount === 1 ? "settings.secondSingular" : "settings.seconds");
+}
+
+function connectSlider(id, outputId, suffix = "") {
     const slider = $(id);
     const output = $(outputId);
 
     function update() {
-        output.textContent = slider.value + suffix;
+        const translatedSuffix = suffix === "seconds"
+            ? " " + formatSeconds(slider.value)
+            : suffix;
+        output.textContent = slider.value + translatedSuffix;
     }
 
     slider.addEventListener("input", update);
+    sliderLabelUpdates.push(update);
     update();
 }
 
-connectSlider("soundDuration", "durationValue", " seconds");
+connectSlider("soundDuration", "durationValue", "seconds");
 connectSlider("soundVolume", "volumeValue", "%");
-connectSlider("gap", "gapValue", " seconds");
+connectSlider("gap", "gapValue", "seconds");
 connectSlider("soundCount", "countValue", "");
 connectSlider("randomMax", "randomMaxValue", "");
 // Keep minimum and maximum pitch synchronized
@@ -112,63 +132,63 @@ document.addEventListener("pointerdown", event => {
 const goldenFrequencies = {
 
     solfeggio: [
-        [396, "Liberation – grounding, security and releasing negative energy."],
-        [417, "Change – creativity, emotional transformation and letting go of the past."],
-        [528, "Love – compassion, transformation and the traditional association with DNA repair."],
-        [639, "Connection – communication, understanding and relationship harmony."],
-        [741, "Awakening – self-expression, clarity and communication."],
-        [852, "Intuition – spiritual insight and meditation."],
-        [963, "Universal connection – oneness and spiritual awareness."]
+        [396, "goldenFrequencies.items.solfeggio.396"],
+        [417, "goldenFrequencies.items.solfeggio.417"],
+        [528, "goldenFrequencies.items.solfeggio.528"],
+        [639, "goldenFrequencies.items.solfeggio.639"],
+        [741, "goldenFrequencies.items.solfeggio.741"],
+        [852, "goldenFrequencies.items.solfeggio.852"],
+        [963, "goldenFrequencies.items.solfeggio.963"]
     ],
 
     additional: [
-        [174, "Foundation – security and stability."],
-        [285, "Healing – physical and emotional balance."],
-        [1074, "Spiritual frequency – spiritual experiences and higher consciousness."],
-        [1174, "Balance – equilibrium of body and mind."],
-        [1152, "Spiritual purification – clarity and cleansing negative energies."],
-        [2172, "Spiritual enlightenment – expanded awareness and deeper connection."]
+        [174, "goldenFrequencies.items.additional.174"],
+        [285, "goldenFrequencies.items.additional.285"],
+        [1074, "goldenFrequencies.items.additional.1074"],
+        [1174, "goldenFrequencies.items.additional.1174"],
+        [1152, "goldenFrequencies.items.additional.1152"],
+        [2172, "goldenFrequencies.items.additional.2172"]
     ],
 
     tesla: [
-        [333, "Balance and harmony."],
-        [639, "Harmony in relationships."],
-        [999, "Completion and spiritual enlightenment."]
+        [333, "goldenFrequencies.items.tesla.333"],
+        [639, "goldenFrequencies.items.tesla.639"],
+        [999, "goldenFrequencies.items.tesla.999"]
     ],
 
     angel: [
-        [111, "New beginnings and spiritual awakening."],
-        [222, "Balance and harmony in relationships."],
-        [333, "Spiritual awareness and intuition."],
-        [444, "Protection and divine guidance."],
-        [555, "Transformation and adaptability."],
-        [666, "Balance and spiritual integration."],
-        [777, "Spiritual awareness and divine alignment."],
-        [888, "Abundance, prosperity and universal alignment."],
-        [999, "Completion, spiritual fulfilment and new beginnings."]
+        [111, "goldenFrequencies.items.angel.111"],
+        [222, "goldenFrequencies.items.angel.222"],
+        [333, "goldenFrequencies.items.angel.333"],
+        [444, "goldenFrequencies.items.angel.444"],
+        [555, "goldenFrequencies.items.angel.555"],
+        [666, "goldenFrequencies.items.angel.666"],
+        [777, "goldenFrequencies.items.angel.777"],
+        [888, "goldenFrequencies.items.angel.888"],
+        [999, "goldenFrequencies.items.angel.999"]
     ],
 
     schumann: [
-        [7.83, "Schumann Resonance – Earth's heartbeat, traditionally associated with grounding and connection to nature."]
+        [7.83, "goldenFrequencies.items.schumann.7.83"]
     ],
 
     planetary: [
-        [141.27, "Mercury – communication and intellect."],
-        [221.23, "Venus – love and harmony."],
-        [126.22, "Earth – stability and grounding."],
-        [144.72, "Mars – action and energy."],
-        [183.58, "Jupiter – abundance and expansion."],
-        [147.85, "Saturn – discipline and structure."],
-        [207.36, "Uranus – innovation and change."],
-        [211.44, "Neptune – intuition and dreams."]
+        [141.27, "goldenFrequencies.items.planetary.141.27"],
+        [221.23, "goldenFrequencies.items.planetary.221.23"],
+        [126.22, "goldenFrequencies.items.planetary.126.22"],
+        [144.72, "goldenFrequencies.items.planetary.144.72"],
+        [183.58, "goldenFrequencies.items.planetary.183.58"],
+        [147.85, "goldenFrequencies.items.planetary.147.85"],
+        [207.36, "goldenFrequencies.items.planetary.207.36"],
+        [211.44, "goldenFrequencies.items.planetary.211.44"]
     ],
 
     brainwave: [
-        [0.5, 4, "Delta – associated with deep sleep and relaxation."],
-        [4, 8, "Theta – associated with meditation and deep relaxation."],
-        [8, 12, "Alpha – associated with calm alertness and creativity."],
-        [12, 30, "Beta – associated with active thinking and focus."],
-        [30, 100, "Gamma – associated with cognitive activity and mental performance."]
+        [0.5, 4, "goldenFrequencies.items.brainwave.0.5-4"],
+        [4, 8, "goldenFrequencies.items.brainwave.4-8"],
+        [8, 12, "goldenFrequencies.items.brainwave.8-12"],
+        [12, 30, "goldenFrequencies.items.brainwave.12-30"],
+        [30, 100, "goldenFrequencies.items.brainwave.30-100"]
     ]
 };
 
@@ -211,11 +231,15 @@ $("goldenCategory").addEventListener("change", () => {
     const category = $("goldenCategory").value;
     const frequencySelect = $("goldenFrequency");
 
-    frequencySelect.innerHTML =
-        '<option value="">Choose a frequency</option>';
+    frequencySelect.replaceChildren(new Option(
+        t("goldenFrequencies.chooseFrequency"),
+        ""
+    ));
 
-    $("goldenDescription").textContent =
-        "Choose a frequency to see its traditional association.";
+    setLocalizedText(
+        $("goldenDescription"),
+        "goldenFrequencies.chooseFrequencyDescription"
+    );
 
     $("applyGoldenFrequency").disabled = true;
 
@@ -260,9 +284,9 @@ $("goldenFrequency").addEventListener("change", () => {
     if (!item) return;
 
     if (category === "brainwave") {
-        $("goldenDescription").textContent = item[2];
+        setLocalizedText($("goldenDescription"), item[2]);
     } else {
-        $("goldenDescription").textContent = item[1];
+        setLocalizedText($("goldenDescription"), item[1]);
     }
 
     $("applyGoldenFrequency").disabled = false;
@@ -302,16 +326,15 @@ $("applyGoldenFrequency").addEventListener("click", () => {
     $("maxPitchValue").textContent = max + " Hz";
 
     // Update description
-    $("goldenDescription").textContent =
-        "✓ Applied: " + min +
-        (min !== max ? "–" + max : "") +
-        " Hz. " +
-        (category === "brainwave" ? item[2] : item[1]);
+    const range = min + (min !== max ? "–" + max : "");
+    const descriptionKey = category === "brainwave" ? item[2] : item[1];
+    setLocalizedText($("goldenDescription"), "goldenFrequencies.applied", {
+        range,
+        description: () => t(descriptionKey)
+    });
 
     // Confirmation
-    $("status").textContent =
-        "Golden frequency applied: " +
-        min + (min !== max ? "–" + max : "") + " Hz";
+    setLocalizedText($("status"), "goldenFrequencies.statusApplied", { range });
 
 
 });
@@ -381,11 +404,6 @@ function stopGoldenStars() {
     }
 }
 
-/* START IN DAY MODE */
-
-setNightMode(false);
-
-
 /* FOLDABLE PANELS */
 
 document.querySelectorAll(".panel").forEach(panel => {
@@ -412,7 +430,7 @@ document.querySelectorAll(".panel").forEach(panel => {
     toggleButton.type = "button";
     toggleButton.className = "panel-chevron";
     toggleButton.textContent = "+";
-    toggleButton.setAttribute("aria-label", "Expand section");
+    toggleButton.setAttribute("aria-label", t("panels.expand"));
     toggleButton.setAttribute("aria-expanded", "false");
 
     // Collapse every panel by default
@@ -434,7 +452,7 @@ document.querySelectorAll(".panel").forEach(panel => {
 
         toggleButton.setAttribute(
             "aria-label",
-            collapsed ? "Expand section" : "Collapse section"
+            t(collapsed ? "panels.expand" : "panels.collapse")
         );
     }
 
@@ -457,4 +475,21 @@ document.querySelectorAll(".panel").forEach(panel => {
         togglePanel();
     });
 
+});
+
+document.addEventListener("languagechange", () => {
+    sliderLabelUpdates.forEach(update => update());
+    synchronizePitchSliders();
+
+    const frequencySelect = $("goldenFrequency");
+    if (frequencySelect.options.length > 1) {
+        frequencySelect.options[0].textContent = t("goldenFrequencies.chooseFrequency");
+    }
+
+    document.querySelectorAll(".panel-chevron").forEach(button => {
+        const key = button.getAttribute("aria-expanded") === "true"
+            ? "panels.collapse"
+            : "panels.expand";
+        button.setAttribute("aria-label", t(key));
+    });
 });
