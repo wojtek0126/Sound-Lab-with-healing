@@ -159,9 +159,13 @@ QA-11	Inspect browser tab	Golden healing-star favicon appears
 QA-12	Test on mobile	Layout remains usable
 QA-13	Refresh live website	Application remains accessible
 QA-14	Inspect console	No unexpected critical errors
-QA-15    Test minimum pitch slider    Maximum pitch automatically adjusts when minimum pitch exceeds it
-QA-16    Test maximum pitch slider    Minimum pitch automatically adjusts when maximum pitch goes below it
-QA-17    Inspect pitch value labels    Both displayed values update correctly
+QA-15    Test minimum pitch slider    Expected: Maximum pitch automatically adjusts when minimum pitch exceeds it
+QA-16    Test maximum pitch slider    Expected: Minimum pitch automatically adjusts when maximum pitch goes below it
+QA-17    Inspect pitch value labels    Expected: Both displayed values update correctly
+QA-18    Attempt to save original recording without recording anything    Expected: Download is prevented and an informative error message appears
+QA-19    Attempt to save WAV without recording anything    Expected: Download is prevented and an informative error message appears
+
+
 QA Execution Log
 
 Use this template when testing a new release:
