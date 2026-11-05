@@ -162,9 +162,11 @@ QA-14	Inspect console	No unexpected critical errors
 QA-15    Test minimum pitch slider    Expected: Maximum pitch automatically adjusts when minimum pitch exceeds it
 QA-16    Test maximum pitch slider    Expected: Minimum pitch automatically adjusts when maximum pitch goes below it
 QA-17    Inspect pitch value labels    Expected: Both displayed values update correctly
-QA-18    Attempt to save original recording without recording anything    Expected: Download is prevented and an informative error message appears
+QA-18    Attempt to save original recording without recording anything    Expected: Download is prevented and an informative error message appears and replay/download controls remain hidden
 QA-19    Attempt to save WAV without recording anything    Expected: Download is prevented and an informative error message appears
-
+QA-20    Complete a valid recording Expected: Start Recording and Stop Recording buttons disappear
+QA-20    Discard a completed recording Expected: Recording controls become visible again
+QA-21    Attempt to save without a valid recording Expected: Download is prevented and an informative message appears |
 
 QA Execution Log
 
@@ -257,10 +259,10 @@ These are proposed enhancements and are not necessarily implemented.
 The following items have been identified for future maintenance and improvement.
 
 ID	Area	Issue / Planned Improvement	Status
-BUG-01	Recording	Prevent users from saving the original recording when no recording has been created.	Completed
+BUG-01	Prevent saving original recording without a valid recording.	Resolved
 BUG-02	Recording	Improve the error message displayed when attempting to save a WAV file without an available recording. Use consistent wording across recording
-actions.	Pending
-BUG-03 Recording Investigate why an apparently empty recording produces a non-empty Blob and triggers the download process. Investigation
+actions.	Resolved
+BUG-03 Recording Investigate why an apparently empty recording produces a non-empty Blob and triggers the download process. Resolved, is never empty, applied minimum allowed file size limit
 
 Planned Behaviour
 
