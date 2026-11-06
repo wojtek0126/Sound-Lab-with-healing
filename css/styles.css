@@ -556,6 +556,17 @@ button:disabled {
     margin-top: 8px;
 }
 
+#recordStatus[data-i18n="recording.unsupported"],
+#recordStatus[data-i18n="recording.nothingToSave"],
+#recordStatus[data-i18n="recording.startFailed"],
+#recordStatus[data-i18n="recording.noRecording"],
+#recordStatus[data-i18n="recording.replayUnavailable"],
+#recordStatus[data-i18n="recording.wavFailed"] {
+    margin-bottom: 0;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
 #progress {
     text-align: center;
     color: #a6e9f4;
