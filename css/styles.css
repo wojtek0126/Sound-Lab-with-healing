@@ -584,6 +584,7 @@ button:disabled {
 #recordStatus[data-i18n="recording.unsupported"] + .recording-controls,
 #recordStatus[data-i18n="recording.beforeStart"] + .recording-controls,
 #recordStatus[data-i18n="recording.nothingToSave"] + .recording-controls,
+#recordStatus[data-i18n="recording.discarded"] + .recording-controls,
 #recordStatus[data-i18n="recording.recordingAudio"] + .recording-controls,
 #recordStatus[data-i18n="recording.readyToReplay"] + .recording-controls,
 #recordStatus[data-i18n="recording.startFailed"] + .recording-controls,
@@ -596,6 +597,7 @@ button:disabled {
 #recordStatus[data-i18n="recording.unsupported"],
 #recordStatus[data-i18n="recording.beforeStart"],
 #recordStatus[data-i18n="recording.nothingToSave"],
+#recordStatus[data-i18n="recording.discarded"],
 #recordStatus[data-i18n="recording.recordingAudio"],
 #recordStatus[data-i18n="recording.readyToReplay"],
 #recordStatus[data-i18n="recording.startFailed"],
@@ -668,10 +670,10 @@ button:disabled {
 .speed-row .select-wrapper {
     display: block;
     position: relative;
-    flex: 0 0 155px;
-    width: 155px;
-    min-width: 155px;
-    max-width: 155px;
+    flex: 0 0 215px;
+    width: 215px;
+    min-width: 215px;
+    max-width: 215px;
     margin-right: 3px;
     overflow: visible;
 }
@@ -683,6 +685,16 @@ button:disabled {
     height: 44px;
     box-sizing: border-box;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.speed-row .select-wrapper select option {
+    white-space: nowrap;
 }
 
 select {
@@ -1352,5 +1364,106 @@ body.night-mode .support-footer {
 button,
 .panel > h2 .section-heading-text,
 h2 {
+    text-transform: uppercase;
+}
+
+/* Shared size and shape for all action buttons (icon and inline buttons keep their own) */
+button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button) {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 48px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.file-choose-button {
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button) {
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+}
+
+.settings-panel label > span[data-i18n],
+.settings-panel label[for="waveformSelect"],
+.settings-panel select,
+.settings-panel option {
+    text-transform: uppercase;
+}
+
+.player-panel {
+    text-transform: uppercase;
+}
+
+.golden-panel {
+    text-transform: uppercase;
+}
+
+.golden-panel select,
+.golden-panel option {
+    text-transform: uppercase;
+}
+
+.golden-panel .golden-description,
+.golden-panel .note,
+.golden-panel .golden-info {
+    text-transform: none;
+}
+
+.golden-panel .note,
+p.note[data-i18n="recording.note"],
+p.note[data-i18n="player.note"],
+p.note[data-i18n="generator.note"] {
+    margin-top: 20px;
+}
+
+#audioFileLabel {
+    display: block;
+    text-align: center;
+    margin: 15px 0;
+    font-size: 12px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: #c8faff;
+}
+
+#recordStatus {
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+#status {
+    font-size: 12px;
+    line-height: 1.45;
+    font-weight: 500;
+    text-transform: uppercase;
+    min-height: 0;
+    margin-top: 20px;
+}
+
+#progress {
+    font-size: 11px;
+    text-transform: uppercase;
+    min-height: 0;
+    margin-top: 4px;
+}
+
+.player-panel .audio-format-note,
+.player-panel .player-tooltip,
+.player-panel > .panel-content > p.note {
+    text-transform: none;
+}
+
+.player-panel select,
+.player-panel option {
     text-transform: uppercase;
 }

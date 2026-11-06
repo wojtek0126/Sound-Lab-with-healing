@@ -95,6 +95,13 @@
 
     <div id="status" data-i18n="generator.ready">Ready to generate sounds.</div>
     <div id="progress"></div>
+
+    <p class="note" data-i18n="generator.note">
+        Custom sounds and sequences use your Sound Settings and Custom Sound
+        Settings (waveform, pitch range, duration, volume, gap and number of
+        sounds). Random sounds pick their own pitch, duration and volume, and a
+        random sequence has a random length of up to the maximum you set.
+    </p>
 </div>
 
 <div class="panel">
@@ -144,11 +151,6 @@
     <div class="panel golden-panel">
     <h2><span class="section-heading-icon" aria-hidden="true">✨</span><span class="section-heading-text" data-i18n="goldenFrequencies.title">Golden Frequencies</span></h2>
 
-    <p class="golden-description" data-i18n="goldenFrequencies.description">
-        Explore special frequencies and their traditional
-        associations with relaxation, meditation and harmony.
-    </p>
-
     <div class="control">
         <label for="goldenCategory" data-i18n="goldenFrequencies.categoryLabel">Frequency category</label>
         <select id="goldenCategory">
@@ -177,9 +179,14 @@
     <button id="applyGoldenFrequency" disabled>
         <span data-i18n="goldenFrequencies.apply">✨ APPLY FREQUENCY</span>
     </button>
+
+    <p class="note" data-i18n="goldenFrequencies.description">
+        Explore special frequencies and their traditional
+        associations with relaxation, meditation and harmony.
+    </p>
 </div>
  
-    <div class="panel">
+    <div class="panel player-panel">
         <h2><span class="section-heading-icon" aria-hidden="true">🎵</span><span class="section-heading-text" data-i18n="player.title">Play Your Own Audio File</span></h2>
         <p class="audio-format-note">
             <span data-i18n="player.supportedLead">ℹ️ Currently supported format:</span>
@@ -187,7 +194,6 @@
         </p>
 
         <div class="control">
-            <label for="audioFile" data-i18n="player.fileLabel">Choose an audio file from your computer</label>
             <input type="file" id="audioFile" accept="audio/*" class="visually-hidden">
             <div class="file-field">
                 <button type="button" id="chooseAudioFile" class="file-choose-button" data-i18n="player.chooseFile">Choose file</button>
@@ -202,6 +208,7 @@
     Once the file has loaded, you can play, pause, rewind,
     fast-forward and adjust playback speed.
 </p>      
+        <label for="audioFile" id="audioFileLabel" data-i18n="player.initialStatus">Choose an audio file to begin.</label>
         <div class="buttons" style="margin-top:15px">
             <button id="filePlay" class="player-button" disabled data-i18n="player.play">▶ PLAY</button>
             <button id="filePause" class="player-button" disabled data-i18n="player.pause">Ⅱ PAUSE</button>
@@ -238,7 +245,7 @@
         <span data-i18n="player.discard">🗑 DISCARD AUDIO FILE</span>
     </button>
 </div>
-        <div id="playerStatus" data-i18n="player.initialStatus">Choose an audio file to begin.</div>
+        <div id="playerStatus" data-i18n="player.statusIdle"></div>
 
         <p class="note" data-i18n="player.note">
             Rewind and forward skip 10 seconds. Playback speed changes the
@@ -247,7 +254,7 @@
         </p>
     </div>
 
-    <div class="panel">
+    <div class="panel settings-panel">
         <h2><span class="section-heading-icon" aria-hidden="true">⚙️</span><span class="section-heading-text" data-i18n="settings.title">Sound Settings</span></h2>
 
         <div class="control">
@@ -278,7 +285,7 @@
         </div>
     </div>
 
-    <div class="panel">
+    <div class="panel settings-panel">
         <h2><span class="section-heading-icon" aria-hidden="true">🎛️</span><span class="section-heading-text" data-i18n="settings.customTitle">Custom Sound Settings</span></h2>
 
         <div class="control">

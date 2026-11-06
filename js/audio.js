@@ -155,6 +155,7 @@ async function generate(count, randomMode, singleSound = false) {
     updateButtons(true);
 
     $("progress").textContent = "";
+    delete $("progress").dataset.i18n;
     setLocalizedText($("status"), "generator.generating");
 
     try {
@@ -194,6 +195,12 @@ async function generate(count, randomMode, singleSound = false) {
             });
 
             await playSound(i, duration, volume);
+        }
+
+        if (stopRequested) {
+            // Dropping data-i18n keeps a language switch from restoring the old text.
+            $("progress").textContent = "";
+            delete $("progress").dataset.i18n;
         }
 
         setLocalizedText(
@@ -263,6 +270,12 @@ function setPlayerButtons(enabled) {
 
 document.querySelector(".file-field").addEventListener("click", () => $("audioFile").click());
 
+// The label above the file field carries the begin/loading/ready hints; the status line stays empty for them.
+function setPlayerHint(key) {
+    setLocalizedText($("audioFileLabel"), key);
+    setLocalizedText($("playerStatus"), "player.statusIdle");
+}
+
 $("audioFile").addEventListener("change", event => {
     const file = event.target.files[0];
 
@@ -287,7 +300,7 @@ if (!file.name.toLowerCase().endsWith(".wav")) {
     $("audioFileActions").classList.remove("visible");
 
     setTimeout(() => {
-        setLocalizedText($("playerStatus"), "player.initialStatus");
+        setLocalizedText($("playerStatus"), "player.statusIdle");
 
         $("playerStatus").style.color = "";
     }, 2000);
@@ -310,7 +323,7 @@ if (!file.name.toLowerCase().endsWith(".wav")) {
     setLocalizedText($("fileName"), "player.selectedFile", {
         filename: file.name
     });
-    setLocalizedText($("playerStatus"), "player.loading");
+    setPlayerHint("player.loading");
     $("audioFileActions").classList.add("visible");
     setPlayerButtons(false);
 });
@@ -320,7 +333,7 @@ uploadedAudio.addEventListener("loadedmetadata", () => {
     uploadedAudio.playbackRate = Number($("playbackSpeed").value);
     updatePlayerDisplay();
 
-    setLocalizedText($("playerStatus"), "player.ready");
+    setPlayerHint("player.ready");
 });
 
 uploadedAudio.addEventListener("timeupdate", updatePlayerDisplay);
@@ -421,7 +434,7 @@ function discardUploadedAudio() {
 
     // Reset status
     setLocalizedText($("fileName"), "player.noFile");
-    setLocalizedText($("playerStatus"), "player.initialStatus");
+    setPlayerHint("player.initialStatus");
 
     // For enabling and disabling text about file to download format
     $("playerTooltip").style.display = "block";    
