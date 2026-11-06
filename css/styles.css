@@ -548,7 +548,10 @@ button:disabled {
 }
 
 #recordStatus[data-i18n="recording.unsupported"] + .recording-controls,
+#recordStatus[data-i18n="recording.beforeStart"] + .recording-controls,
 #recordStatus[data-i18n="recording.nothingToSave"] + .recording-controls,
+#recordStatus[data-i18n="recording.recordingAudio"] + .recording-controls,
+#recordStatus[data-i18n="recording.readyToReplay"] + .recording-controls,
 #recordStatus[data-i18n="recording.startFailed"] + .recording-controls,
 #recordStatus[data-i18n="recording.noRecording"] + .recording-controls,
 #recordStatus[data-i18n="recording.replayUnavailable"] + .recording-controls,
@@ -557,7 +560,10 @@ button:disabled {
 }
 
 #recordStatus[data-i18n="recording.unsupported"],
+#recordStatus[data-i18n="recording.beforeStart"],
 #recordStatus[data-i18n="recording.nothingToSave"],
+#recordStatus[data-i18n="recording.recordingAudio"],
+#recordStatus[data-i18n="recording.readyToReplay"],
 #recordStatus[data-i18n="recording.startFailed"],
 #recordStatus[data-i18n="recording.noRecording"],
 #recordStatus[data-i18n="recording.replayUnavailable"],
