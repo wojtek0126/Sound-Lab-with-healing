@@ -573,6 +573,16 @@ button:disabled {
     line-height: 1.45;
 }
 
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #recordStatus[data-i18n="recording.readyToReplay"] + .recording-controls {
+        margin-top: 0;
+    }
+
+    #recordStatus[data-i18n="recording.readyToReplay"] ~ #recordingActions.visible {
+        margin-top: 15px;
+    }
+}
+
 #progress {
     text-align: center;
     color: #a6e9f4;
@@ -667,6 +677,10 @@ select {
 
 .select-wrapper.open .select-chevron {
     transform: translateY(-30%) rotate(225deg);
+}
+
+.select-wrapper:has(select:disabled).open .select-chevron {
+    transform: translateY(-70%) rotate(45deg);
 }
 
 .note {

@@ -19,6 +19,8 @@ The approved UI fixes are implemented in `css/styles.css`. Android follow-up fix
 | Android-04 | Cached section title repeats the icon after the separate icon | Pass | The localization manager removes a matching leading icon from a section-title translation before rendering it. |
 | Android-05 | Section icon is not centered between title and panel edge | Pass | On narrow screens the icon column is centered in the gutter between the heading text and the panel's left content edge. |
 | UI-06 | Recording messages are too large and too close to recording buttons | Pass | Recording errors plus the initial, in-progress, and ready messages use 12px text with 1.45 line-height and an 8px gap before controls. Other status messages keep their existing style and spacing. |
+| UI-07 | Desktop recording-ready message is unevenly spaced between replay and save controls | Pass | On desktop-like fine-pointer viewports, the ready message is centered with equal 15px vertical gaps above and below. Touch/mobile spacing is unchanged. |
+| UI-08 | Playback-speed chevron flips while the dropdown is disabled (desktop) | Implemented, pending check | The custom select handler in `js/settings.js` ignores pointer-down on disabled selects, and `css/styles.css` resets the chevron to its closed orientation for a disabled select. The chevron stays down until an audio file is loaded. |
 
 ## Verification
 
@@ -43,6 +45,8 @@ Viewport checks were performed in the shared desktop Chromium browser at 320, 36
 | Android-04 cached icon handling | Pass in desktop Chromium simulation | A locale value with a stale leading icon rendered exactly one icon alongside the title. Current icon-free locale values remain unchanged. |
 | Android-05 icon gutter alignment | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, icon centers align with the midpoint between the section content edge and heading text in English and Polish. |
 | UI-06 recording message size and spacing | Pass in viewport emulation | Initial, recording, and ready messages plus unsupported-browser, nothing-to-save, start-failed, no-recording, replay-unavailable, and WAV-failed states were checked in English and Polish at 320px and desktop width. They use 12px text, 1.45 line-height, and an 8px gap; unrelated status messages retain their existing style. |
+| UI-07 recording-ready spacing | Pass in desktop Chromium simulation | In English and Polish at 1280px, the ready message has equal 15px gaps between replay and save controls. The desktop-only media query excludes touch layouts. |
+| UI-08 playback-speed chevron while disabled | Not verified in browser | Implemented as a guard in the pointer-down handler plus a CSS fallback. Needs a desktop check that clicking the disabled dropdown before loading audio leaves the chevron unflipped, and that it still flips normally once enabled. |
 
 ## Documentation and Release Notes
 
