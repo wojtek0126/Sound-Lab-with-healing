@@ -2,7 +2,7 @@
 
 ## Scope
 
-The approved UI fixes are implemented in `css/styles.css`. The Android follow-up fixes are implemented in `css/styles.css` and `js/audio.js`; the audio change only refreshes the displayed waveform name after a language switch. Audio generation, recording, and playback logic and locale wording/keys were not changed. The existing comment-only change in `index.html` was preserved.
+The approved UI fixes are implemented in `css/styles.css`. Android follow-up fixes are implemented in `css/styles.css`, `js/audio.js`, and `index.html`. The audio change only refreshes the displayed waveform name after a language switch. Section icons are separate, decorative markup; translated title wording and locale keys are unchanged. Audio generation, recording, and playback logic were not changed. The existing comment-only change in `index.html` was preserved.
 
 ## UI Fix Results
 
@@ -15,7 +15,7 @@ The approved UI fixes are implemented in `css/styles.css`. The Android follow-up
 | UI-05 | Duration and gap values wrap inconsistently | Pass | Both value elements keep their number and unit together while their descriptions may wrap. |
 | Android-01 | Volume stat card is left-aligned on Android mobile | Pass | On narrow screens the final stat card spans the grid and is centered at half-grid width. |
 | Android-02 | Waveform value remains in the previous locale after switching | Pass | The app retains the actual waveform key and refreshes the displayed value on `languagechange`. |
-| Android-03 | Wrapped section heading text starts beneath its icon | Pass | Mobile section-heading spans use a hanging indent so subsequent lines align with the title text. |
+| Android-03 | Wrapped section heading text starts beneath its icon | Pass | Each decorative icon is a separate, vertically centered element; multiline title text wraps independently. |
 
 ## Verification
 
@@ -36,7 +36,7 @@ Viewport checks were performed in the shared desktop Chromium browser at 320, 36
 | Android Chrome hardware | Not tested | Viewport emulation in desktop Chromium is not a substitute for a physical Android device. |
 | Android-01 layout verification | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, the volume stat card is centered in English and Polish. Physical Android remains not tested. |
 | Android-02 locale switching | Pass in desktop Chromium | The displayed waveform changed from `SAWTOOTH` to `PIŁOKSZTAŁTNY` after switching English to Polish. Physical Android remains not tested. |
-| Android-03 heading alignment | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, wrapped heading lines start 24px after the icon in English and Polish. At 768px headings remain unchanged. Physical Android remains not tested. |
+| Android-03 heading alignment | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, wrapped title lines align with each other beside the vertically centered icon in English and Polish. At 768px headings remain unchanged. Physical Android remains not tested. |
 
 ## Documentation and Release Notes
 

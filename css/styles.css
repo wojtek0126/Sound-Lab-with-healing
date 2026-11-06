@@ -721,12 +721,8 @@ body.night-mode .audio-format-note {
 
     .theme-label { font-size: 11px; }
 
-    .panel > h2 > span[data-i18n] {
+    .panel > h2 > .section-heading-text {
         display: block;
-        flex: 1 1 auto;
-        min-width: 0;
-        padding-inline-start: 1.35em;
-        text-indent: -1.35em;
     }
 
     h1 {
@@ -922,6 +918,19 @@ body.night-mode .golden-info {
     justify-content: space-between;
     gap: 12px;
     cursor: default;
+}
+
+.panel > h2 > .section-heading-icon {
+    display: flex;
+    flex: 0 0 1.15em;
+    align-items: center;
+    justify-content: center;
+    margin-right: -8px;
+}
+
+.panel > h2 > .section-heading-text {
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .section-header {
