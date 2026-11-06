@@ -721,6 +721,14 @@ body.night-mode .audio-format-note {
 
     .theme-label { font-size: 11px; }
 
+    .panel > h2 > span[data-i18n] {
+        display: block;
+        flex: 1 1 auto;
+        min-width: 0;
+        padding-inline-start: 1.35em;
+        text-indent: -1.35em;
+    }
+
     h1 {
         letter-spacing: 0;
     }
