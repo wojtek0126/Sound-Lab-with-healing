@@ -20,6 +20,7 @@ Documentation is split into small, self-contained Markdown files so each can be 
 | roadmap | [1.2.0-milestones-and-release-criteria.md](roadmap/1.2.0-milestones-and-release-criteria.md) | Milestones M1-M8, release criteria | Jira (versions) |
 | releases | [version-history.md](releases/version-history.md) | Version table | Confluence / releases |
 | releases | [release-notes-1.1.0.md](releases/release-notes-1.1.0.md) | 1.1.0 release notes and limitations | GitHub Releases |
+| releases | [release-notes-1.2.0.md](releases/release-notes-1.2.0.md) | 1.2.0 changes (in progress) | GitHub Releases |
 | releases | [1.1.0-post-release-fixes-report.md](releases/1.1.0-post-release-fixes-report.md) | UI-01 to UI-10 and Android-01 to Android-05 results | Jira / Confluence |
 | releases | [progress-log.md](releases/progress-log.md) | Historical development log | Confluence |
 

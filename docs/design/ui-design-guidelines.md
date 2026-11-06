@@ -19,6 +19,10 @@ The project uses a custom healing-star icon instead of the browser's default glo
 
 Keep the favicon file and the reference in sync if the path changes.
 
+## Typography
+
+- All button labels and section titles are displayed in uppercase (`text-transform: uppercase` in `css/styles.css`). Translation files keep their original casing, so the transformation is purely visual.
+
 ## Dropdowns
 
 - All dropdowns share a blue focus outline and a blue hover background.

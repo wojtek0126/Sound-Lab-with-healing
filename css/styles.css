@@ -1347,3 +1347,10 @@ body.night-mode .support-footer {
 #stopRecord[hidden] {
     display: none !important;
 }
+
+/* Uppercase button labels and section titles */
+button,
+.panel > h2 .section-heading-text,
+h2 {
+    text-transform: uppercase;
+}
