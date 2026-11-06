@@ -4,7 +4,7 @@ You are working in the existing **Sound Lab with Healing** repository. The app i
 
 ## Your task
 
-Investigate and propose a minimal, safe implementation for the five post-release UI/UX issues documented in `README.md` under **“Post-release UI/UX QA Log — English/Polish release”**. Follow `UI_UX_FIX_PLAN.md` as the implementation and verification guide.
+Investigate and propose a minimal, safe implementation for the five post-release UI/UX issues documented in `docs/qa/post-release-ui-qa-log.md` under **“Post-release UI/UX QA Log — English/Polish release”**. Follow `docs/qa/ui-ux-fix-plan.md` as the implementation and verification guide.
 
 The five reported defects are:
 
@@ -18,7 +18,7 @@ The five reported defects are:
 
 ### Phase 1: Inspect and report
 
-1. Read `README.md`, `UI_UX_FIX_PLAN.md`, `index.html`, the complete `css/styles.css`, and relevant JavaScript/localisation files.
+1. Read `docs/qa/post-release-ui-qa-log.md`, `docs/qa/ui-ux-fix-plan.md`, `index.html`, the complete `css/styles.css`, and relevant JavaScript/localisation files.
 2. Trace the exact DOM nodes and translation keys involved in each issue. Confirm whether the waveform text issue is the statistic label or the dynamically populated waveform value before changing CSS.
 3. Inspect the full CSS cascade and responsive media queries. In particular, `styles.css` contains multiple `.speed-row` rules, fixed widths, `white-space: nowrap`, and high-specificity/`!important` declarations. Determine which rules actually win.
 4. Inspect whether JavaScript modifies/wraps the playback-speed `<select>` at runtime.
@@ -75,7 +75,7 @@ Do not claim a device/browser was tested unless it was actually tested. If you c
 1. A concise diagnosis of each issue and the files/classes involved.
 2. A proposed change list for owner approval before editing.
 3. After approval, a focused diff with explanations.
-4. A test-results table mapped to UI-01 through UI-05 and the regression checks in `UI_UX_FIX_PLAN.md`.
+4. A test-results table mapped to UI-01 through UI-05 and the regression checks in `docs/qa/ui-ux-fix-plan.md`.
 5. A README update that changes statuses only to results actually verified. Leave anything untested or unresolved as Open/Not tested.
 6. A list of any remaining risks or manual checks required before release.
 

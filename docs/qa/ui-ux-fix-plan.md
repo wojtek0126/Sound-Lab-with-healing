@@ -5,7 +5,7 @@
 
 ## 1. Goals and guardrails
 
-- Fix the five issues recorded as UI-01 through UI-05 in `README.md`.
+- Fix the five issues recorded as UI-01 through UI-05 in `docs/qa/post-release-ui-qa-log.md`.
 - Prioritise Android/mobile layouts while preserving desktop behaviour.
 - Test both English and Polish, including long Polish labels and values.
 - Do not refactor unrelated modules or alter audio generation, recording, playback, or persistence logic.
@@ -14,7 +14,7 @@
 
 ## 2. Investigation and baseline
 
-1. Read `README.md`, `index.html`, the complete `css/styles.css`, and the relevant JavaScript/localisation code.
+1. Read `docs/qa/post-release-ui-qa-log.md`, `index.html`, the complete `css/styles.css`, and the relevant JavaScript/localisation code.
 2. Trace how locale JSON values are loaded and applied, and identify the exact translated DOM nodes for each finding.
 3. Inspect the full cascade for `.container`, `h1`, `.stat-value`, `.player-button`, `.speed-row`, `.select-wrapper`, and `.control label`, including media queries and `!important` rules.
 4. Confirm whether any script wraps or decorates `<select>` elements at runtime; do not assume the static HTML is the final DOM.
@@ -133,5 +133,5 @@ The implementation order may be adjusted if inspection reveals a shared root cau
 - Existing audio generation, recording, replay, upload, playback-speed, and settings interactions pass regression checks.
 - No new horizontal page overflow, clipped controls, inaccessible labels, or console errors are introduced.
 - CSS changes are targeted and consolidated; no unnecessary global typography/wrapping changes are introduced.
-- `README.md` is updated with actual results and statuses only after testing. Keep unresolved items marked Open.
+- `docs/qa/post-release-ui-qa-log.md` is updated with actual results and statuses only after testing. Keep unresolved items marked Open.
 - Do not create a new release/version entry until the owner decides to publish the verified fix.
