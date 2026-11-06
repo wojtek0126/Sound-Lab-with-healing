@@ -2,7 +2,7 @@
 
 ## Scope
 
-The approved UI fixes are implemented in `css/styles.css`. Android follow-up fixes are implemented in `css/styles.css`, `js/audio.js`, and `index.html`. The audio change only refreshes the displayed waveform name after a language switch. Section icons are separate, decorative markup; translated title wording and locale keys are unchanged. Audio generation, recording, and playback logic were not changed. The existing comment-only change in `index.html` was preserved.
+The approved UI fixes are implemented in `css/styles.css`. Android follow-up fixes are implemented in `css/styles.css`, `js/audio.js`, `js/localization.js`, and `index.html`. The audio change only refreshes the displayed waveform name after a language switch. Section icons are separate, decorative markup; translated title wording and locale keys are unchanged. The localization manager strips a duplicate leading icon from older cached section-title translations. Audio generation, recording, and playback logic were not changed. The existing comment-only change in `index.html` was preserved.
 
 ## UI Fix Results
 
@@ -16,6 +16,7 @@ The approved UI fixes are implemented in `css/styles.css`. Android follow-up fix
 | Android-01 | Volume stat card is left-aligned on Android mobile | Pass | On narrow screens the final stat card spans the grid and is centered at half-grid width. |
 | Android-02 | Waveform value remains in the previous locale after switching | Pass | The app retains the actual waveform key and refreshes the displayed value on `languagechange`. |
 | Android-03 | Wrapped section heading text starts beneath its icon | Pass | Each decorative icon is a separate, vertically centered element; multiline title text wraps independently. |
+| Android-04 | Cached section title repeats the icon after the separate icon | Pass | The localization manager removes a matching leading icon from a section-title translation before rendering it. |
 
 ## Verification
 
@@ -37,6 +38,7 @@ Viewport checks were performed in the shared desktop Chromium browser at 320, 36
 | Android-01 layout verification | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, the volume stat card is centered in English and Polish. Physical Android remains not tested. |
 | Android-02 locale switching | Pass in desktop Chromium | The displayed waveform changed from `SAWTOOTH` to `PIŁOKSZTAŁTNY` after switching English to Polish. Physical Android remains not tested. |
 | Android-03 heading alignment | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, wrapped title lines align with each other beside the vertically centered icon in English and Polish. At 768px headings remain unchanged. Physical Android remains not tested. |
+| Android-04 cached icon handling | Pass in desktop Chromium simulation | A locale value with a stale leading icon rendered exactly one icon alongside the title. Current icon-free locale values remain unchanged. |
 
 ## Documentation and Release Notes
 

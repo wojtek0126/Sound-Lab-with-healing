@@ -24,6 +24,17 @@ function setLocalizedText(element, key, parameters = {}) {
     element.textContent = t(key, parameters);
 }
 
+function getElementTranslation(element, key, parameters) {
+    const message = t(key, parameters);
+    const icon = element.parentElement?.querySelector(":scope > .section-heading-icon");
+
+    if (icon && message.startsWith(icon.textContent)) {
+        return message.slice(icon.textContent.length).trimStart();
+    }
+
+    return message;
+}
+
 function readSavedLanguage() {
     try {
         return localStorage.getItem(languageStorageKey);
@@ -46,7 +57,8 @@ function applyTranslations() {
 
     document.querySelectorAll("[data-i18n]").forEach(element => {
         const dynamic = dynamicTranslations.get(element);
-        element.textContent = t(
+        element.textContent = getElementTranslation(
+            element,
             element.dataset.i18n,
             dynamic?.parameters
         );
