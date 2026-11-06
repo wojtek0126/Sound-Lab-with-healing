@@ -188,10 +188,12 @@
 
         <div class="control">
             <label for="audioFile" data-i18n="player.fileLabel">Choose an audio file from your computer</label>
-            <input type="file" id="audioFile" accept="audio/*">
+            <input type="file" id="audioFile" accept="audio/*" class="visually-hidden">
+            <div class="file-field">
+                <button type="button" id="chooseAudioFile" class="file-choose-button" data-i18n="player.chooseFile">Choose file</button>
+                <span id="fileName" class="file-name" data-i18n="player.noFile">No audio file selected.</span>
+            </div>
         </div>
-
-        <div id="fileName" class="note" data-i18n="player.noFile">No audio file selected.</div>
 
         <audio id="uploadedAudio" preload="metadata"></audio>
 

@@ -373,6 +373,40 @@ input[type="file"]::file-selector-button {
     cursor: pointer;
 }
 
+.file-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    background: #073d59;
+    border: 1px solid #51bfd4;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+body.night-mode .file-field {
+    background: #101c39;
+    border-color: #416dba;
+}
+
+.file-choose-button {
+    flex: 0 0 auto;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 0;
+}
+
+.file-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #e9fbff;
+}
+
 .stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

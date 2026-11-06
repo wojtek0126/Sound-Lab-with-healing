@@ -118,6 +118,7 @@
   "player.supportedLead": "ℹ️ Currently supported format:",
   "player.supportedTail": " only. Other audio formats are not supported at the moment.",
   "player.fileLabel": "Choose an audio file from your computer",
+  "player.chooseFile": "Choose file",
   "player.noFile": "No audio file selected.",
   "player.uploadHint": "💡 Upload a WAV file first before using the playback controls. Once the file has loaded, you can play, pause, rewind, fast-forward and adjust playback speed.",
   "player.play": "▶ PLAY",

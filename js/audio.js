@@ -261,6 +261,8 @@ function setPlayerButtons(enabled) {
     $("playbackSpeed").disabled = !enabled;
 }
 
+document.querySelector(".file-field").addEventListener("click", () => $("audioFile").click());
+
 $("audioFile").addEventListener("change", event => {
     const file = event.target.files[0];
 

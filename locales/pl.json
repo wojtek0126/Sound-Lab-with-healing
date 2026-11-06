@@ -118,6 +118,7 @@
   "player.supportedLead": "ℹ️ Obecnie obsługiwany jest tylko format",
   "player.supportedTail": ". Inne formaty audio nie są obecnie obsługiwane.",
   "player.fileLabel": "Wybierz plik audio z komputera",
+  "player.chooseFile": "Wybierz plik",
   "player.noFile": "Nie wybrano pliku audio.",
   "player.uploadHint": "💡 Najpierw prześlij plik WAV, aby użyć elementów sterujących. Po załadowaniu pliku możesz go odtwarzać, wstrzymywać, przewijać i zmieniać prędkość odtwarzania.",
   "player.play": "▶ ODTWÓRZ",

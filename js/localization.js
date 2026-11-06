@@ -85,7 +85,7 @@ function applyTranslations() {
 
 async function initializeLocalization() {
     const results = await Promise.allSettled(supportedLanguages.map(async language => {
-        const response = await fetch(`locales/${language}.json`);
+        const response = await fetch(`locales/${language}.json`, { cache: "no-cache" });
         if (!response.ok) {
             throw new Error(`Could not load ${language}.json (${response.status})`);
         }
