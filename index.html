@@ -14,7 +14,7 @@
 
 <body>
 
-<!-- DAY / NIGHT SWITCH AND BULB -->
+<!-- DAY / NIGHT SWITCH AND BULB AND LOCALE SWITCH -->
 
 <div class="theme-controls">
     <span class="theme-label" id="themeLabel" data-i18n="theme.day">☀️ DAY</span>
@@ -83,7 +83,7 @@
     </div>
 
     <div class="panel">
-    <h2><span data-i18n="generator.title">🚀 Generate Sounds</span></h2>
+    <h2><span class="section-heading-icon" aria-hidden="true">🚀</span><span class="section-heading-text" data-i18n="generator.title">Generate Sounds</span></h2>
 
     <div class="buttons">
         <button id="one" data-i18n="generator.customOne">Generate One Custom Sound</button>
@@ -98,7 +98,7 @@
 </div>
 
 <div class="panel">
-        <h2><span data-i18n="recording.title">🔴 Record Your Sounds</span></h2>
+        <h2><span class="section-heading-icon" aria-hidden="true">🔴</span><span class="section-heading-text" data-i18n="recording.title">Record Your Sounds</span></h2>
 
 	<div class="recording-buttons replay-controls" id="replayControls" style="margin-top:12px">
  	   <button id="replayRecording" class="player-button" disabled>
@@ -113,9 +113,7 @@
             <span data-i18n="recording.inProgress">● RECORDING IN PROGRESS</span>
         </div>
 
-        <div id="recordStatus">
-            <span data-i18n="recording.beforeStart">Start recording before generating sounds.</span>
-        </div>
+        <div id="recordStatus" data-i18n="recording.beforeStart">Start recording before generating sounds.</div>
 
 	<div class="recording-buttons recording-controls" id="recordingControls">
    	 <button id="startRecord" class="record-button">
@@ -144,7 +142,7 @@
     </div>
 
     <div class="panel golden-panel">
-    <h2><span data-i18n="goldenFrequencies.title">✨ Golden Frequencies</span></h2>
+    <h2><span class="section-heading-icon" aria-hidden="true">✨</span><span class="section-heading-text" data-i18n="goldenFrequencies.title">Golden Frequencies</span></h2>
 
     <p class="golden-description" data-i18n="goldenFrequencies.description">
         Explore special frequencies and their traditional
@@ -182,7 +180,7 @@
 </div>
  
     <div class="panel">
-        <h2><span data-i18n="player.title">🎵 Play Your Own Audio File</span></h2>
+        <h2><span class="section-heading-icon" aria-hidden="true">🎵</span><span class="section-heading-text" data-i18n="player.title">Play Your Own Audio File</span></h2>
         <p class="audio-format-note">
             <span data-i18n="player.supportedLead">ℹ️ Currently supported format:</span>
             <strong>WAV (.wav)</strong><span data-i18n="player.supportedTail"> only. Other audio formats are not supported at the moment.</span>
@@ -190,10 +188,12 @@
 
         <div class="control">
             <label for="audioFile" data-i18n="player.fileLabel">Choose an audio file from your computer</label>
-            <input type="file" id="audioFile" accept="audio/*">
+            <input type="file" id="audioFile" accept="audio/*" class="visually-hidden">
+            <div class="file-field">
+                <button type="button" id="chooseAudioFile" class="file-choose-button" data-i18n="player.chooseFile">Choose file</button>
+                <span id="fileName" class="file-name" data-i18n="player.noFile">No audio file selected.</span>
+            </div>
         </div>
-
-        <div id="fileName" class="note" data-i18n="player.noFile">No audio file selected.</div>
 
         <audio id="uploadedAudio" preload="metadata"></audio>
 
@@ -248,7 +248,7 @@
     </div>
 
     <div class="panel">
-        <h2><span data-i18n="settings.title">⚙️ Sound Settings</span></h2>
+        <h2><span class="section-heading-icon" aria-hidden="true">⚙️</span><span class="section-heading-text" data-i18n="settings.title">Sound Settings</span></h2>
 
         <div class="control">
             <label for="waveformSelect" data-i18n="settings.waveform">Waveform</label>
@@ -279,7 +279,7 @@
     </div>
 
     <div class="panel">
-        <h2><span data-i18n="settings.customTitle">🎛️ Custom Sound Settings</span></h2>
+        <h2><span class="section-heading-icon" aria-hidden="true">🎛️</span><span class="section-heading-text" data-i18n="settings.customTitle">Custom Sound Settings</span></h2>
 
         <div class="control">
             <label for="soundDuration">

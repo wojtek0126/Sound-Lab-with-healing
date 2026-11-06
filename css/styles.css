@@ -335,6 +335,12 @@ h2 {
     color: var(--text);
 }
 
+#durationValue,
+#gapValue {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
 input[type="range"] {
     width: 100%;
     accent-color: #39d5e9;
@@ -365,6 +371,40 @@ input[type="file"]::file-selector-button {
     border-radius: 6px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.file-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    background: #073d59;
+    border: 1px solid #51bfd4;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+body.night-mode .file-field {
+    background: #101c39;
+    border-color: #416dba;
+}
+
+.file-choose-button {
+    flex: 0 0 auto;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 0;
+}
+
+.file-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #e9fbff;
 }
 
 .stats {
@@ -399,7 +439,7 @@ body.night-mode .stat {
     color: #efffff;
     font-size: 20px;
     font-weight: bold;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
 }
 
 .buttons {
@@ -541,6 +581,42 @@ button:disabled {
     font-weight: bold;
 }
 
+#recordStatus[data-i18n="recording.unsupported"] + .recording-controls,
+#recordStatus[data-i18n="recording.beforeStart"] + .recording-controls,
+#recordStatus[data-i18n="recording.nothingToSave"] + .recording-controls,
+#recordStatus[data-i18n="recording.recordingAudio"] + .recording-controls,
+#recordStatus[data-i18n="recording.readyToReplay"] + .recording-controls,
+#recordStatus[data-i18n="recording.startFailed"] + .recording-controls,
+#recordStatus[data-i18n="recording.noRecording"] + .recording-controls,
+#recordStatus[data-i18n="recording.replayUnavailable"] + .recording-controls,
+#recordStatus[data-i18n="recording.wavFailed"] + .recording-controls {
+    margin-top: 8px;
+}
+
+#recordStatus[data-i18n="recording.unsupported"],
+#recordStatus[data-i18n="recording.beforeStart"],
+#recordStatus[data-i18n="recording.nothingToSave"],
+#recordStatus[data-i18n="recording.recordingAudio"],
+#recordStatus[data-i18n="recording.readyToReplay"],
+#recordStatus[data-i18n="recording.startFailed"],
+#recordStatus[data-i18n="recording.noRecording"],
+#recordStatus[data-i18n="recording.replayUnavailable"],
+#recordStatus[data-i18n="recording.wavFailed"] {
+    margin-bottom: 0;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #recordStatus[data-i18n="recording.readyToReplay"] + .recording-controls {
+        margin-top: 0;
+    }
+
+    #recordStatus[data-i18n="recording.readyToReplay"] ~ #recordingActions.visible {
+        margin-top: 15px;
+    }
+}
+
 #progress {
     text-align: center;
     color: #a6e9f4;
@@ -582,29 +658,31 @@ button:disabled {
     color: var(--text);
 }
 
-/* PLAYBACK SPEED DROPDOWN FIX */
+.speed-row label {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    color: var(--text);
+}
 
 .speed-row .select-wrapper {
     display: block;
     position: relative;
-    flex: 0 0 150px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
+    flex: 0 0 155px;
+    width: 155px;
+    min-width: 155px;
+    max-width: 155px;
     margin-right: 3px;
+    overflow: visible;
 }
 
 .speed-row .select-wrapper select {
-    display: block;
     width: 100%;
     min-width: 0;
     max-width: 100%;
+    height: 44px;
+    box-sizing: border-box;
     cursor: pointer;
-}
-
-.speed-row select {
-    max-width: 150px;
-    margin-right: 3px;
 }
 
 select {
@@ -635,15 +713,8 @@ select {
     transform: translateY(-30%) rotate(225deg);
 }
 
-.speed-row .select-wrapper {
-    width: auto;
-    max-width: 150px;
-    flex: 0 1 150px;
-    margin-right: 3px;
-}
-
-.speed-row .select-wrapper select {
-    max-width: 100%;
+.select-wrapper:has(select:disabled).open .select-chevron {
+    transform: translateY(-70%) rotate(45deg);
 }
 
 .note {
@@ -698,9 +769,17 @@ body.night-mode .audio-format-note {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .recording-buttons.replay-controls {
+        grid-template-columns: 1fr;
+    }
+
     .recording-buttons button {
         font-size: 12px;
         padding: 8px 4px;
+    }
+
+    .recording-buttons.replay-controls button {
+        height: auto;
     }
 
     .recording-actions {
@@ -716,8 +795,56 @@ body.night-mode .audio-format-note {
 
     .theme-label { font-size: 11px; }
 
+    .panel > h2 > .section-heading-text {
+        display: block;
+    }
+
+    h1 {
+        letter-spacing: 0;
+    }
+
+    html[lang="pl"] h1 {
+        font-size: 24px;
+    }
+
+    .stat:nth-child(3) {
+        grid-column: 1 / -1;
+    }
+
+    .stat:nth-child(4) {
+        grid-column: 1 / -1;
+        width: calc(50% - 5px);
+        justify-self: center;
+    }
+
+    .speed-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 7px;
+        padding-right: 0;
+    }
+
+    .speed-row .select-wrapper {
+        flex: 0 1 auto;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        margin-right: 0;
+    }
+
     .container {
         margin-top: 65px;
+    }
+}
+
+@media (max-width: 359px) {
+    html[lang="pl"] h1 {
+        font-size: 21px;
+    }
+
+    .recording-buttons.replay-controls button {
+        font-size: 11px;
+        padding: 8px 4px;
     }
 }
 
@@ -767,6 +894,77 @@ body.night-mode .select-wrapper select option {
     color: #ffffff;
 }
 
+/* Blue outline and hover/selected highlight for all dropdowns */
+.select-wrapper select:focus,
+.select-wrapper select:active {
+    outline: 2px solid #51bfd4;
+    outline-offset: 1px;
+}
+
+.select-wrapper select:hover:not(:disabled),
+.select-wrapper select:focus:not(:disabled) {
+    background-color: #0a5578;
+}
+
+.select-wrapper select option:hover {
+    background: linear-gradient(#087e9b, #087e9b);
+    background-color: #087e9b;
+    color: #ffffff;
+}
+
+body.night-mode .select-wrapper select:focus,
+body.night-mode .select-wrapper select:active {
+    outline-color: #416dba;
+}
+
+body.night-mode .select-wrapper select:hover:not(:disabled),
+body.night-mode .select-wrapper select:focus:not(:disabled) {
+    background-color: #1a2d5c;
+}
+
+body.night-mode .select-wrapper select option:hover {
+    background: linear-gradient(#2a4a8f, #2a4a8f);
+    background-color: #2a4a8f;
+}
+
+/* Styleable dropdown list (Chromium 135+); other browsers keep the native list */
+@supports (appearance: base-select) {
+    .select-wrapper select,
+    .select-wrapper select::picker(select) {
+        appearance: base-select;
+    }
+
+    .select-wrapper select::picker-icon {
+        display: none;
+    }
+
+    .select-wrapper select::picker(select) {
+        box-sizing: border-box;
+        padding: 4px;
+        background: #073d59;
+        border: 2px solid #51bfd4;
+        border-radius: 10px;
+    }
+
+    .select-wrapper select option {
+        border-radius: 6px;
+        padding: 8px 10px;
+    }
+
+    .select-wrapper select option::checkmark {
+        display: none;
+    }
+
+    .select-wrapper select option:checked:not(:hover) {
+        background: transparent;
+    }
+
+    body.night-mode .select-wrapper select::picker(select) {
+        background: #101c39;
+        border-color: #416dba;
+    }
+}
+
 /* KEEP START AND STOP RECORDING BUTTONS VISIBLE */
 
 .recording-buttons.recording-controls {
@@ -799,84 +997,13 @@ body.night-mode .player-tooltip {
     color: #c8dcff;
 }
 
-/* PLAYBACK SPEED — FORCE VISIBLE IN DAY AND NIGHT MODES */
-
-.speed-row {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 12px !important;
-    width: 100% !important;
-    min-height: 48px;
-    overflow: visible !important;
-}
-
-.speed-row label {
-    display: block !important;
-    flex: 1 1 auto !important;
-    min-width: 0;
-    white-space: nowrap;
-    color: var(--text) !important;
-}
-
-.speed-row .select-wrapper {
-    display: block !important;
-    position: relative !important;
-    flex: 0 0 155px !important;
-    width: 155px !important;
-    min-width: 155px !important;
-    max-width: 155px !important;
-    margin-right: 3px !important;
-    overflow: visible !important;
-}
-
-.speed-row select,
-.speed-row .select-wrapper select {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    height: 44px !important;
-    box-sizing: border-box !important;
-    padding: 8px 30px 8px 10px !important;
-    background-color: #073d59 !important;
-    color: white !important;
-    border: 1px solid #51bfd4 !important;
-    border-radius: 7px !important;
-    cursor: pointer !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-}
-
-body.night-mode .speed-row select,
-body.night-mode .speed-row .select-wrapper select {
-    background-color: #101c39 !important;
-    color: white !important;
-    border-color: #416dba !important;
-}
-
 .speed-row select:disabled {
-    opacity: 0.75 !important;
-    cursor: not-allowed !important;
-}
-
-.speed-row select option {
-    background: #073d59;
-    color: white;
-}
-
-body.night-mode .speed-row select option {
-    background: #101c39;
-    color: white;
+    opacity: 0.75;
+    cursor: not-allowed;
 }
 
 .speed-row .select-chevron {
-    display: block !important;
-    right: 12px !important;
+    right: 12px;
     z-index: 2;
 }
 
@@ -936,6 +1063,26 @@ body.night-mode .golden-info {
     justify-content: space-between;
     gap: 12px;
     cursor: default;
+}
+
+.panel > h2 > .section-heading-icon {
+    display: flex;
+    flex: 0 0 1.15em;
+    align-items: center;
+    justify-content: center;
+    margin-right: -8px;
+}
+
+.panel > h2 > .section-heading-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+@media (max-width: 480px) {
+    .panel > h2 > .section-heading-icon {
+        flex-basis: 1.35em;
+        margin-right: -12px;
+    }
 }
 
 .section-header {

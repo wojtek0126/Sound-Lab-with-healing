@@ -88,6 +88,8 @@ document.querySelectorAll("select").forEach(select => {
     wrapper.appendChild(chevron);
 
     select.addEventListener("pointerdown", () => {
+        if (select.disabled) return;
+
         const wasOpen = wrapper.classList.contains("open");
 
         document.querySelectorAll(".select-wrapper.open")
