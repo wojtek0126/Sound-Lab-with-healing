@@ -18,7 +18,7 @@ The approved UI fixes are implemented in `css/styles.css`. Android follow-up fix
 | Android-03 | Wrapped section heading text starts beneath its icon | Pass | Each decorative icon is a separate, vertically centered element; multiline title text wraps independently. |
 | Android-04 | Cached section title repeats the icon after the separate icon | Pass | The localization manager removes a matching leading icon from a section-title translation before rendering it. |
 | Android-05 | Section icon is not centered between title and panel edge | Pass | On narrow screens the icon column is centered in the gutter between the heading text and the panel's left content edge. |
-| UI-06 | Recording error is too large and too close to recording buttons | Pass | Error-only statuses use 12px text with 1.45 line-height and an 8px gap before Start/Stop controls at all viewport widths; normal statuses keep their existing style and spacing. |
+| UI-06 | Recording errors are too large and too close to recording buttons | Pass | All recording error states use 12px text with 1.45 line-height and an 8px gap before Start/Stop controls; normal statuses keep their existing style and spacing. |
 
 ## Verification
 
@@ -42,7 +42,7 @@ Viewport checks were performed in the shared desktop Chromium browser at 320, 36
 | Android-03 heading alignment | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, wrapped title lines align with each other beside the vertically centered icon in English and Polish. At 768px headings remain unchanged. Physical Android remains not tested. |
 | Android-04 cached icon handling | Pass in desktop Chromium simulation | A locale value with a stale leading icon rendered exactly one icon alongside the title. Current icon-free locale values remain unchanged. |
 | Android-05 icon gutter alignment | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, icon centers align with the midpoint between the section content edge and heading text in English and Polish. |
-| UI-06 recording error size and spacing | Pass in viewport emulation | Long English and Polish error messages use 12px text and have an 8px gap before Start/Stop controls at mobile and desktop widths; normal status styling and spacing are unchanged. |
+| UI-06 recording error size and spacing | Pass in viewport emulation | Unsupported-browser, nothing-to-save, start-failed, no-recording, replay-unavailable, and WAV-failed states were checked in English and Polish at 320px and desktop width. Each uses 12px text, 1.45 line-height, and an 8px gap; normal ready status remains 16px with no added gap. |
 
 ## Documentation and Release Notes
 
