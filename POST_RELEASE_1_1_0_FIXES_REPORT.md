@@ -34,6 +34,6 @@ Viewport checks were performed in the shared desktop Chromium browser at 320, 36
 
 ## Documentation and Release Notes
 
-The requested `UI_UX_FIX_PLAN.md` and the “Post-release UI/UX QA Log — English/Polish release” section were not present in the checkout or local `main` branch. Remote retrieval required GitHub authentication and was unavailable, so no README QA statuses were changed.
+`UI_UX_FIX_PLAN.md` was added by the remote branch update and is now present in this branch. The README still does not contain the “Post-release UI/UX QA Log — English/Polish release” section, so no README QA statuses were changed.
 
 No deployment or release was performed. Android-device verification and successful replay of a browser-created recording remain open before release.
