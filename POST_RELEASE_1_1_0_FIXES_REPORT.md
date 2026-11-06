@@ -22,6 +22,7 @@ The approved UI fixes are implemented in `css/styles.css`. Android follow-up fix
 | UI-07 | Desktop recording-ready message is unevenly spaced between replay and save controls | Pass | On desktop-like fine-pointer viewports, the ready message is centered with equal 15px vertical gaps above and below. Touch/mobile spacing is unchanged. |
 | UI-08 | Playback-speed chevron flips while the dropdown is disabled (desktop) | Pass | The custom select handler in `js/settings.js` ignores pointer-down on disabled selects, and `css/styles.css` resets the chevron to its closed orientation for a disabled select. The chevron stays down until an audio file is loaded. |
 | UI-09 | Native file input text ("Wybierz plik" / "Nie wybrano pliku") follows the browser language instead of the app language | Pass | The native input is visually hidden and replaced by an input-style `.file-field` in `index.html` containing a localized button and the file-name status. The whole field opens the file dialog (`js/audio.js`). New key `player.chooseFile` added to `locales/en.json` and `locales/pl.json`; `js/localization.js` fetches locale files with `cache: "no-cache"` so new keys are not served stale. |
+| UI-10 | Dropdown styling: blue outline/hover, rounded outlined list, no highlight on the current option | Pass | `css/styles.css` adds a blue focus outline and hover background for all `.select-wrapper select` controls (day/night variants). Under `@supports (appearance: base-select)` the open list gets a 2px blue border, 10px radius, rounded options, blue hover only, no checkmark and no highlight on the selected option. Browsers without `base-select` keep the native list. |
 
 ## Verification
 
@@ -49,6 +50,7 @@ Viewport checks were performed in the shared desktop Chromium browser at 320, 36
 | UI-07 recording-ready spacing | Pass in desktop Chromium simulation | In English and Polish at 1280px, the ready message has equal 15px gaps between replay and save controls. The desktop-only media query excludes touch layouts. |
 | UI-08 playback-speed chevron while disabled | Pass on localhost (manual) | Confirmed visually on a local server in desktop browser: the chevron no longer flips before audio is loaded. Published site must be re-checked after a hard refresh. |
 | UI-09 localized file field | Pass on localhost (manual) | Confirmed visually on a local server: button and status text follow the selected language, and the whole field opens the file dialog. Physical Android remains not tested. |
+| UI-10 dropdown styling | Pass on localhost in Chrome (manual) | Confirmed visually in desktop Chrome. The styled list requires Chromium 135+; Firefox, Safari and mobile browsers show native lists (no rounded border) and were not tested. |
 
 ## Documentation and Release Notes
 

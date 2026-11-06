@@ -894,6 +894,77 @@ body.night-mode .select-wrapper select option {
     color: #ffffff;
 }
 
+/* Blue outline and hover/selected highlight for all dropdowns */
+.select-wrapper select:focus,
+.select-wrapper select:active {
+    outline: 2px solid #51bfd4;
+    outline-offset: 1px;
+}
+
+.select-wrapper select:hover:not(:disabled),
+.select-wrapper select:focus:not(:disabled) {
+    background-color: #0a5578;
+}
+
+.select-wrapper select option:hover {
+    background: linear-gradient(#087e9b, #087e9b);
+    background-color: #087e9b;
+    color: #ffffff;
+}
+
+body.night-mode .select-wrapper select:focus,
+body.night-mode .select-wrapper select:active {
+    outline-color: #416dba;
+}
+
+body.night-mode .select-wrapper select:hover:not(:disabled),
+body.night-mode .select-wrapper select:focus:not(:disabled) {
+    background-color: #1a2d5c;
+}
+
+body.night-mode .select-wrapper select option:hover {
+    background: linear-gradient(#2a4a8f, #2a4a8f);
+    background-color: #2a4a8f;
+}
+
+/* Styleable dropdown list (Chromium 135+); other browsers keep the native list */
+@supports (appearance: base-select) {
+    .select-wrapper select,
+    .select-wrapper select::picker(select) {
+        appearance: base-select;
+    }
+
+    .select-wrapper select::picker-icon {
+        display: none;
+    }
+
+    .select-wrapper select::picker(select) {
+        box-sizing: border-box;
+        padding: 4px;
+        background: #073d59;
+        border: 2px solid #51bfd4;
+        border-radius: 10px;
+    }
+
+    .select-wrapper select option {
+        border-radius: 6px;
+        padding: 8px 10px;
+    }
+
+    .select-wrapper select option::checkmark {
+        display: none;
+    }
+
+    .select-wrapper select option:checked:not(:hover) {
+        background: transparent;
+    }
+
+    body.night-mode .select-wrapper select::picker(select) {
+        background: #101c39;
+        border-color: #416dba;
+    }
+}
+
 /* KEEP START AND STOP RECORDING BUTTONS VISIBLE */
 
 .recording-buttons.recording-controls {
