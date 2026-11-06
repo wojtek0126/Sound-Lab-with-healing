@@ -547,6 +547,15 @@ button:disabled {
     font-weight: bold;
 }
 
+#recordStatus[data-i18n="recording.unsupported"] + .recording-controls,
+#recordStatus[data-i18n="recording.nothingToSave"] + .recording-controls,
+#recordStatus[data-i18n="recording.startFailed"] + .recording-controls,
+#recordStatus[data-i18n="recording.noRecording"] + .recording-controls,
+#recordStatus[data-i18n="recording.replayUnavailable"] + .recording-controls,
+#recordStatus[data-i18n="recording.wavFailed"] + .recording-controls {
+    margin-top: 8px;
+}
+
 #progress {
     text-align: center;
     color: #a6e9f4;
@@ -931,6 +940,13 @@ body.night-mode .golden-info {
 .panel > h2 > .section-heading-text {
     flex: 1 1 auto;
     min-width: 0;
+}
+
+@media (max-width: 480px) {
+    .panel > h2 > .section-heading-icon {
+        flex-basis: 1.35em;
+        margin-right: -12px;
+    }
 }
 
 .section-header {
