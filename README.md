@@ -28,6 +28,10 @@ Golden star visual elements.
 Custom golden healing-star browser favicon.
 Responsive browser-based interface.
 Synchronized minimum and maximum pitch controls to prevent invalid frequency ranges.
+English and Polish interface with a language selector (choice is remembered).
+Golden Frequencies presets with an animated golden-star effect.
+Upload and play your own WAV file with seek, rewind/forward 10 s and playback speed.
+Collapsible section panels.
 
 2. User Instructions
 Accessing the Application
@@ -72,13 +76,26 @@ text
 Sound-Lab-with-healing/
 │
 ├── index.html
-├── favicon.svg
+├── css/styles.css
+├── js/
+│   ├── app.js
+│   ├── audio.js
+│   ├── localization.js
+│   ├── recording.js
+│   └── settings.js
+├── locales/
+│   ├── en.json
+│   └── pl.json
+├── assets/favicon.svg
 ├── README.md
+├── POST_RELEASE_1_1_0_FIXES_REPORT.md
+├── UI_UX_FIX_PLAN.md
+├── COPILOT_UI_UX_FIX_PROMPT.md
 ├── LICENSE
 └── .gitignore
 
 
-Additional assets or source files may be added as the application develops.
+Locale files are loaded with fetch(), so the app must be served over HTTP (for example `python -m http.server 8000`) rather than opened from the file system.
 
 Main Files
 File	Purpose
@@ -270,7 +287,7 @@ Connect HTML interface elements to translation keys.
 Translate dynamic status messages and notifications.
 Ensure consistent translations across all application modules.
 Test language switching and persistence.
-Status: Localization files prepared. Integration pending.
+Status: Localization integrated; English and Polish are available in 1.1.0.
 
 8. Future Improvements
 
@@ -308,11 +325,11 @@ The following five layout issues were reported during post-release smoke testing
 
 | ID | Area | Observed behaviour | Expected behaviour | Context | Status |
 |---|---|---|---|---|---|
-| UI-01 | Main heading / responsive layout | The app title (“Sound Lab”) overflows its containing panel on Android/mobile. | The title remains fully inside the panel at supported viewport widths, without horizontal overflow or clipping. | Android/mobile; verify both locales and narrow widths. | Open |
-| UI-02 | Waveform statistic / Polish typography | Longer Polish waveform names wrap at awkward points inside a word, making the label/value look unnatural. | Polish words should wrap at natural word boundaries. If a value cannot fit, adjust its available width or responsive typography rather than breaking it mid-word. | Polish; reported on Android/mobile. | Open |
-| UI-03 | Recording replay button | The translated “Replay latest recording” button label (“Odtwórz ostatnie nagranie”) occupies three lines. | The label should have a balanced, intentional layout (preferably no more than two lines on narrow screens), remain readable, and keep the button usable without clipping or truncation. | Polish; reported on Android/mobile. | Open |
-| UI-04 | Uploaded-audio playback speed control | The playback-speed dropdown clips/overlaps the “Playback speed” label in the “Play Your Own Audio File” section. | The label and dropdown must have sufficient space and remain fully visible, without overlap or clipping. | Both English and Polish; also reported outside Android. | Open |
-| UI-05 | Custom sound settings / value alignment | “Gap between sounds” value (e.g. “x seconds”) breaks onto multiple lines, while “Sound duration” value stays on one line. | Both duration and gap values should follow the same consistent layout rule; the numeric value and unit should stay together. | Polish; reported on Android/mobile. | Open |
+| UI-01 | Main heading / responsive layout | The app title (“Sound Lab”) overflows its containing panel on Android/mobile. | The title remains fully inside the panel at supported viewport widths, without horizontal overflow or clipping. | Android/mobile; verify both locales and narrow widths. | Resolved (viewport-verified) |
+| UI-02 | Waveform statistic / Polish typography | Longer Polish waveform names wrap at awkward points inside a word, making the label/value look unnatural. | Polish words should wrap at natural word boundaries. If a value cannot fit, adjust its available width or responsive typography rather than breaking it mid-word. | Polish; reported on Android/mobile. | Resolved (viewport-verified) |
+| UI-03 | Recording replay button | The translated “Replay latest recording” button label (“Odtwórz ostatnie nagranie”) occupies three lines. | The label should have a balanced, intentional layout (preferably no more than two lines on narrow screens), remain readable, and keep the button usable without clipping or truncation. | Polish; reported on Android/mobile. | Resolved (viewport-verified) |
+| UI-04 | Uploaded-audio playback speed control | The playback-speed dropdown clips/overlaps the “Playback speed” label in the “Play Your Own Audio File” section. | The label and dropdown must have sufficient space and remain fully visible, without overlap or clipping. | Both English and Polish; also reported outside Android. | Resolved (viewport-verified) |
+| UI-05 | Custom sound settings / value alignment | “Gap between sounds” value (e.g. “x seconds”) breaks onto multiple lines, while “Sound duration” value stays on one line. | Both duration and gap values should follow the same consistent layout rule; the numeric value and unit should stay together. | Polish; reported on Android/mobile. | Resolved (viewport-verified) |
 
 **Triage note:** These are presentation and responsive-layout defects. No audio-generation, recording, playback, or localisation-data failure has been reported as part of these five findings. Do not change audio behaviour or translation wording unless investigation demonstrates that it is necessary and the change is explicitly reviewed.
 
@@ -337,8 +354,27 @@ Update the status of each item as development progresses.
 Version	Description
 - 1.0.0	Initial public GitHub Pages release
 - 1.1.0 Improved recording controls, recording validation, synchronized pitch controls and enhanced accordion panel interaction. Successful smoke testing.   
+- 1.1.0 post-release fixes: English/Polish localization, responsive and Android layout fixes, dropdown and file-field improvements (see Release Notes below and POST_RELEASE_1_1_0_FIXES_REPORT.md).
 
 Update this section whenever a new release is published.
+
+### Release Notes — 1.1.0 and post-release fixes
+
+Important updates:
+- Application split into index.html, css/, js/ and locales/ (English and Polish).
+- Language selector with persisted choice; locale files are fetched with cache revalidation so new keys are not served stale.
+- Post-release UI/UX fixes UI-01 to UI-10 and Android-01 to Android-05 are implemented; details and verification status are in POST_RELEASE_1_1_0_FIXES_REPORT.md.
+- Playback-speed dropdown chevron no longer flips while the control is disabled (no audio loaded).
+- The native browser file input was replaced with a localized, input-style field ("Choose file" / "Wybierz plik"); the whole field opens the file dialog.
+- Dropdowns share a blue focus outline and hover highlight. In Chromium 135+ the open list is rounded and outlined; other browsers keep the native list.
+- Recording status and error messages use a smaller, consistent style with spacing before the controls.
+
+Known limitations:
+- Verification was done in desktop Chromium viewport emulation; physical Android devices are not tested.
+- Replay of a browser-created recording was rejected in the tested Chromium session (NotSupportedError) and is not verified.
+- Styled dropdown lists need Chromium 135+.
+
+Branches: main (released code), release/1.1.0 (backup of 1.1.0 post-release state), post-release-1-1-0-fixes-android (fix history).
 
 10. License
 
