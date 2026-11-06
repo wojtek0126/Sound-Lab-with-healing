@@ -1467,3 +1467,41 @@ p.note[data-i18n="generator.note"] {
 .player-panel option {
     text-transform: uppercase;
 }
+
+/* Labels and field text share the hint style (12px, medium weight, uppercase) */
+.control label,
+.speed-row label,
+#fileName {
+    font-size: 12px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: #c8faff;
+    text-transform: uppercase;
+}
+
+.control label {
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+#minPitchValue,
+#maxPitchValue {
+    text-transform: none;
+}
+
+#durationValue,
+#volumeValue,
+#gapValue,
+#countValue,
+#randomMaxValue {
+    text-transform: uppercase;
+}
+
+/* Dropdown text matches the label style */
+.select-wrapper select,
+.select-wrapper select option {
+    font-size: 12px;
+    font-weight: 500;
+    color: #c8faff;
+    text-transform: uppercase;
+}
