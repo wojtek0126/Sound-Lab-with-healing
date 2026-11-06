@@ -2,7 +2,7 @@
 
 ## Scope
 
-The approved UI fixes are implemented in `css/styles.css`. Application behavior, JavaScript, and locale wording/keys were not changed. The existing comment-only change in `index.html` was preserved.
+The approved UI fixes are implemented in `css/styles.css`. The Android follow-up fixes are implemented in `css/styles.css` and `js/audio.js`; the audio change only refreshes the displayed waveform name after a language switch. Audio generation, recording, and playback logic and locale wording/keys were not changed. The existing comment-only change in `index.html` was preserved.
 
 ## UI Fix Results
 
@@ -13,6 +13,8 @@ The approved UI fixes are implemented in `css/styles.css`. Application behavior,
 | UI-03 | Replay label wraps excessively | Pass | Replay controls use a single-column layout on mobile, natural button height, and a small-screen font adjustment. The existing minimum tap height is retained. |
 | UI-04 | Playback-speed label overlaps dropdown | Pass | Conflicting speed-row overrides were consolidated. The row stacks on mobile and remains inline on wider screens. The custom select wrapper and chevron remain functional. |
 | UI-05 | Duration and gap values wrap inconsistently | Pass | Both value elements keep their number and unit together while their descriptions may wrap. |
+| Android-01 | Volume stat card is left-aligned on Android mobile | Pass | On narrow screens the final stat card spans the grid and is centered at half-grid width. |
+| Android-02 | Waveform value remains in the previous locale after switching | Pass | The app retains the actual waveform key and refreshes the displayed value on `languagechange`. |
 
 ## Verification
 
@@ -31,6 +33,8 @@ Viewport checks were performed in the shared desktop Chromium browser at 320, 36
 | Uploaded WAV playback and pause | Pass | A generated WAV fixture loaded, played, and paused. |
 | Browser console/page errors | Pass | No errors were observed after a clean page reload. |
 | Android Chrome hardware | Not tested | Viewport emulation in desktop Chromium is not a substitute for a physical Android device. |
+| Android-01 layout verification | Pass in viewport emulation | At 320, 360, 390, and 430 CSS pixels, the volume stat card is centered in English and Polish. Physical Android remains not tested. |
+| Android-02 locale switching | Pass in desktop Chromium | The displayed waveform changed from `SAWTOOTH` to `PIŁOKSZTAŁTNY` after switching English to Polish. Physical Android remains not tested. |
 
 ## Documentation and Release Notes
 

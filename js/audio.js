@@ -1,5 +1,14 @@
 /* AUDIO GENERATOR */
 
+let lastPlayedWaveform = null;
+
+document.addEventListener("languagechange", () => {
+    if (!lastPlayedWaveform) return;
+
+    $("waveform").textContent =
+        t("settings." + lastPlayedWaveform).toUpperCase();
+});
+
 function random(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -118,6 +127,7 @@ function playSound(index, duration, volume) {
 
         $("number").textContent = index;
         $("frequency").textContent = Number(frequency.toFixed(2)) + " Hz";
+        lastPlayedWaveform = waveform;
         $("waveform").textContent = t("settings." + waveform).toUpperCase();
         $("actualVolume").textContent = Math.round(volume) + "%";
 
