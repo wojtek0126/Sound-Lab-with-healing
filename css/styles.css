@@ -1497,6 +1497,45 @@ p.note[data-i18n="generator.note"] {
     text-transform: uppercase;
 }
 
+/* Initial recording message: equal 20px gaps between the section title and the buttons */
+#recordStatus[data-i18n="recording.beforeStart"],
+#recordStatus[data-i18n="recording.discarded"],
+#recordStatus[data-i18n="recording.nothingToSave"],
+#recordStatus[data-i18n="recording.recordingAudio"] {
+    min-height: 0;
+    margin-top: 5px;
+}
+
+#recordStatus[data-i18n="recording.beforeStart"] + .recording-controls,
+#recordStatus[data-i18n="recording.discarded"] + .recording-controls,
+#recordStatus[data-i18n="recording.nothingToSave"] + .recording-controls,
+#recordStatus[data-i18n="recording.recordingAudio"] + .recording-controls {
+    margin-top: 20px;
+}
+
+/* While recording, the indicator and message form one centered block */
+.recording-indicator.active {
+    margin-top: 5px;
+}
+
+.recording-indicator.active + #recordStatus {
+    margin-top: 4px;
+}
+
+/* Ready message: equal 20px gaps between the replay buttons and the save buttons */
+#recordStatus[data-i18n="recording.readyToReplay"] {
+    min-height: 0;
+    margin-top: 20px;
+}
+
+#recordStatus[data-i18n="recording.readyToReplay"] + .recording-controls {
+    margin-top: 0;
+}
+
+#recordStatus[data-i18n="recording.readyToReplay"] ~ #recordingActions.visible {
+    margin-top: 20px;
+}
+
 /* Dropdown text matches the label style */
 .select-wrapper select,
 .select-wrapper select option {

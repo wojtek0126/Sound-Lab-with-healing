@@ -36,6 +36,9 @@ Scope so far: documentation restructuring and a UI polish pass (consistent typog
 
 ## Record Your Sounds
 
+- The initial message ("Start recording before generating sounds.") is centered between the section title and the Start/Stop buttons with equal 20px gaps. Other recording messages keep the 8px gap before the buttons.
+- "Recording discarded. Ready for a new recording.", "Nothing to save. Please start recording..." and "Recording audio..." are centered like the initial message (equal 20px gaps between the section title and the buttons). While recording, the "● RECORDING IN PROGRESS" indicator and "Recording audio..." form one centered block (4px between them, 20px above and below).
+- The "Recording ready! You can replay or save it." message is centered between the replay buttons and the save buttons with equal 20px gaps on desktop and mobile (replacing the earlier desktop-only 15px spacing).
 - The note at the bottom has a 20px gap above it, matching the Golden Frequencies note.
 
 ## Generate Sounds
