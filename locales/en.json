@@ -21,6 +21,8 @@
   "generator.randomSequence": "Generate Random Sequence",
   "generator.stop": "■ STOP SOUND",
   "generator.ready": "Ready to generate sounds.",
+  "help.show": "Show help",
+  "help.hide": "Hide help",
   "generator.note": "Custom sounds and sequences use your Sound Settings and Custom Sound Settings (waveform, pitch range, duration, volume, gap and number of sounds). Random sounds pick their own pitch, duration and volume, and a random sequence has a random length of up to the maximum you set.",
   "generator.generating": "Generating sounds...",
   "generator.waiting": "Waiting {seconds} seconds...",

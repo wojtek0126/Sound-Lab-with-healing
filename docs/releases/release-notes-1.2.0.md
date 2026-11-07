@@ -8,6 +8,11 @@ Scope so far: documentation restructuring and a UI polish pass (consistent typog
 
 - The README was split into topic files under `docs/` (product, development, design, ci-cd, qa, backlog, roadmap, releases). The root README keeps basic info and links. See the [documentation index](../README.md).
 
+## Help Information
+
+- The four section notes (Generate Sounds, Record Your Sounds, Golden Frequencies, Play Your Own Audio File) are hidden by default behind a round "?" help icon next to the +/- toggle in each section heading. The icon is disabled and grayed out while the section is closed; closing a section also hides its note, so the note is hidden again when the section is reopened. Clicking or tapping the icon (or pressing Enter/Space when focused) shows or hides the note. Works on desktop and Android/mobile. The icon is a 32px button with `aria-expanded`, `aria-controls` and a localized label (new keys `help.show` and `help.hide` in `en.json` and `pl.json`). Implemented in `js/settings.js` and `css/styles.css`.
+- The supported-format note and the upload tooltip in Play Your Own Audio File are still always visible.
+
 ## Typography
 
 - All buttons and section titles are uppercase (CSS only; translation strings in `locales/` are unchanged).
@@ -20,7 +25,7 @@ Scope so far: documentation restructuring and a UI polish pass (consistent typog
 
 ## Buttons
 
-- All action buttons share one style: minimum height 48px, 10px radius, 13px text (12px up to 480px wide), centered label. Previously generate/player buttons (44-47px, 9px radius, 14px) and recording buttons (52px, 10px radius, 13px) differed.
+- All action buttons share one style: minimum height 48px, 10px radius, 13px text (12px up to 480px wide), centered label. On desktop (768px and wider) every action button is exactly 340 x 48 px: full-width buttons (Stop sound, Apply frequency, discard buttons) are now 340px wide and centered, and the button grids use a 10px gap. Previously generate/player buttons (44-47px, 9px radius, 14px) and recording buttons (52px, 10px radius, 13px) differed.
 - The day/night bulb and +/- panel toggles keep their own icon-button style. The small "Choose file" button inside the file field stays compact (13px text).
 
 ## Play Your Own Audio File
@@ -29,6 +34,7 @@ Scope so far: documentation restructuring and a UI polish pass (consistent typog
 - The status line below no longer repeats those messages (new empty key `player.statusIdle` in both locale files). Playing, paused and error statuses still use it. The key `player.fileLabel` is now unused.
 - The Playback speed dropdown is 215px wide on desktop (was 155px), keeps its text on one line (ellipsis if it still does not fit) and the selected text is vertically centered. Mobile layout (full-width, stacked) is unchanged.
 - The note at the bottom has a 20px gap above it.
+- The player status line (for example the red "Unsupported format. Please select a WAV file." error) uses the same text style as the hint above the play buttons (12px, medium weight, uppercase); the red colour is kept. It is centered between the playback-speed dropdown and the note below with equal 20px gaps (it takes no space while empty).
 
 ## Golden Frequencies
 

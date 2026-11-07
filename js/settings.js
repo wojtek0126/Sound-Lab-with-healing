@@ -479,6 +479,50 @@ document.querySelectorAll(".panel").forEach(panel => {
 
 });
 
+/* HELP NOTES: each section note is hidden behind a help icon next to the +/- toggle */
+
+document.querySelectorAll(".panel-content > p.note").forEach((note, index) => {
+    const panel = note.closest(".panel");
+    const heading = panel.querySelector(":scope > h2");
+
+    note.id = note.id || "helpNote" + index;
+    note.hidden = true;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "help-toggle";
+    button.textContent = "?";
+    button.setAttribute("aria-controls", note.id);
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-label", t("help.show"));
+
+    function setOpen(open) {
+        note.hidden = !open;
+        button.setAttribute("aria-expanded", String(open));
+        button.setAttribute("aria-label", t(open ? "help.hide" : "help.show"));
+    }
+
+    button.addEventListener("click", event => {
+        event.stopPropagation();
+        setOpen(note.hidden);
+    });
+
+    // The icon is only usable while the section is open; closing the section hides the note.
+    function syncWithPanel() {
+        const collapsed = panel.classList.contains("collapsed");
+        button.disabled = collapsed;
+        if (collapsed) setOpen(false);
+    }
+
+    new MutationObserver(syncWithPanel).observe(panel, {
+        attributes: true,
+        attributeFilter: ["class"]
+    });
+    syncWithPanel();
+
+    heading.insertBefore(button, heading.querySelector(".panel-chevron"));
+});
+
 document.addEventListener("languagechange", () => {
     sliderLabelUpdates.forEach(update => update());
     synchronizePitchSliders();
@@ -493,5 +537,10 @@ document.addEventListener("languagechange", () => {
             ? "panels.collapse"
             : "panels.expand";
         button.setAttribute("aria-label", t(key));
+    });
+
+    document.querySelectorAll(".help-toggle").forEach(button => {
+        const open = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-label", t(open ? "help.hide" : "help.show"));
     });
 });

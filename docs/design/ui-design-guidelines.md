@@ -31,10 +31,12 @@ Keep the favicon file and the reference in sync if the path changes.
 ## Buttons
 
 - All action buttons: minimum height 48px, 10px radius, 13px text (12px up to 480px wide), centered label.
+- On desktop (768px and wider) all action buttons are exactly 340 x 48 px, with full-width buttons centered.
 - Exceptions: the day/night bulb and the +/- panel toggles (icon buttons), and the small "Choose file" button inside the file field.
 
 ## Notes and Spacing
 
+- Section notes are hidden behind a round "?" help icon (32px, blue outline) next to the +/- toggle in each section heading; the icon toggles the note, which appears at the bottom of the section with a 20px gap above it. The icon is disabled and grayed out while the section is closed.
 - Section notes (Generate Sounds, Record Your Sounds, Golden Frequencies, Play Your Own Audio File) sit at the bottom of the section with a 20px gap above.
 - Status messages sit between controls with equal gaps above and below (Generate Sounds: 20px).
 

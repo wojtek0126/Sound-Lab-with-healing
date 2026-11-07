@@ -1368,7 +1368,7 @@ h2 {
 }
 
 /* Shared size and shape for all action buttons (icon and inline buttons keep their own) */
-button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button) {
+button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button):not(.help-toggle) {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -1387,9 +1387,26 @@ button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button) {
 }
 
 @media (max-width: 480px) {
-    button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button) {
+    button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button):not(.help-toggle) {
         padding: 8px 4px;
         font-size: 12px;
+    }
+}
+
+/* Desktop: every action button has the same width and height */
+@media (min-width: 768px) {
+    .buttons,
+    .recording-buttons,
+    .recording-actions {
+        gap: 10px;
+    }
+
+    button:not(.bulb-button):not(.panel-chevron):not(.file-choose-button):not(.help-toggle) {
+        width: 340px !important;
+        min-width: 0;
+        justify-self: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -1484,6 +1501,17 @@ p.note[data-i18n="generator.note"] {
     margin-bottom: 8px;
 }
 
+/* Player status (errors such as unsupported format; colour is set inline by audio.js) */
+#playerStatus {
+    font-size: 12px;
+    line-height: 1.45;
+    font-weight: 500;
+    text-transform: uppercase;
+    min-height: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
 #minPitchValue,
 #maxPitchValue {
     text-transform: none;
@@ -1543,4 +1571,54 @@ p.note[data-i18n="generator.note"] {
     font-weight: 500;
     color: #c8faff;
     text-transform: uppercase;
+}
+
+/* Help icon next to the +/- toggle that reveals a section note */
+.help-toggle {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 1;
+    border: 1px solid #51bfd4;
+    background: transparent;
+    color: #c8faff;
+}
+
+.help-toggle + .panel-chevron {
+    margin-left: 0;
+}
+
+.help-toggle:disabled,
+body.night-mode .help-toggle:disabled {
+    border-color: #7d8e95;
+    color: #7d8e95;
+    background: transparent;
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.help-toggle:hover:not(:disabled),
+.help-toggle[aria-expanded="true"] {
+    background: #087e9b;
+}
+
+.help-toggle:focus-visible {
+    outline: 2px solid #51bfd4;
+    outline-offset: 2px;
+}
+
+body.night-mode .help-toggle {
+    border-color: #416dba;
+}
+
+body.night-mode .help-toggle:hover:not(:disabled),
+body.night-mode .help-toggle[aria-expanded="true"] {
+    background: #2a4a8f;
 }

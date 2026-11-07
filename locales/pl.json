@@ -21,6 +21,8 @@
   "generator.randomSequence": "Generuj losową sekwencję",
   "generator.stop": "■ ZATRZYMAJ DŹWIĘK",
   "generator.ready": "Gotowe do generowania dźwięków.",
+  "help.show": "Pokaż pomoc",
+  "help.hide": "Ukryj pomoc",
   "generator.note": "Własne dźwięki i sekwencje korzystają z ustawień dźwięku oraz własnych ustawień dźwięku (przebieg, zakres częstotliwości, czas trwania, głośność, przerwa i liczba dźwięków). Dźwięki losowe same wybierają częstotliwość, czas trwania i głośność, a losowa sekwencja ma losową długość do ustawionego maksimum.",
   "generator.generating": "Generowanie dźwięków...",
   "generator.waiting": "Oczekiwanie {seconds} s...",
